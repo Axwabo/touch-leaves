@@ -1,9 +1,13 @@
+@font-face {
+    font-family: DynaPuff;
+    src: url("./assets/fonts/DynaPuff-Regular.ttf");
+}
+
 :root {
-    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: DynaPuff, Avenir, Helvetica, Arial, sans-serif;
 
     color-scheme: light dark;
     color: #ffcfbd;
-    background-color: #120903;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -13,16 +17,14 @@
 
 body {
     margin: 0;
-    display: flex;
+    display: grid;
     place-items: center;
     min-height: 100vh;
+    font-size: 2em;
 }
 
 button {
-    border-radius: 8px;
-    border: 1px solid transparent;
     padding: 0.6em 1.2em;
-    font-size: 1em;
     font-weight: 500;
     font-family: inherit;
     background-color: #1a1a1a;
@@ -31,9 +33,10 @@ button {
 }
 
 #app {
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 button {

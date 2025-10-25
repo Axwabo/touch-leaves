@@ -30,7 +30,6 @@ const { touch } = useStore();
 }
 
 .title {
-    font-weight: bold;
     font-size: 5rem;
 }
 </style>

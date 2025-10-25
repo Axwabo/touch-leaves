@@ -2,6 +2,8 @@ import { VitePWA } from "vite-plugin-pwa";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
+const base = "/touch-leaves/";
+
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [ vue(), VitePWA({
@@ -14,14 +16,14 @@ export default defineConfig({
         },
 
         manifest: {
-            name: "touch-leaves",
+            name: "Touch Leaves",
             short_name: "Touch Leaves",
             description: "Touch Leaves Simulator (Autumn-themed Touch Grass Simulator)",
             theme_color: "#ed8a00"
         },
 
         workbox: {
-            globPatterns: [ "**/*.{js,css,html,svg,png,ico}" ],
+            globPatterns: [ "**/*.{js,css,html,svg,webp,ttf,ogg}" ],
             cleanupOutdatedCaches: true,
             clientsClaim: true
         },
@@ -31,6 +33,10 @@ export default defineConfig({
             navigateFallback: "index.html",
             suppressWarnings: true,
             type: "module"
-        }
-    }) ]
+        },
+
+        base
+    }) ],
+
+    base
 })
