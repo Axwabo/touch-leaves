@@ -1,14 +1,14 @@
 import { defineStore } from "pinia";
 import type TouchedLeafData from "./types/touchedLeafData.ts";
-import type { Reactive } from "vue";
+import { reactive } from "vue";
 
 interface State {
     leaves: number;
-    touched: Reactive<TouchedLeafData>[];
+    touched: TouchedLeafData[];
 }
 
 const store = defineStore("touch-leaves", {
-    state: (): State => ({ leaves: 0, touched: [] }),
+    state: (): State => ({ leaves: 0, touched: reactive([]) }),
     actions: {
         touch(amount: number) {
             amount = Math.floor(amount);
