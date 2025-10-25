@@ -1,15 +1,29 @@
 import { defineStore } from "pinia";
 import type TouchedLeafData from "./types/touchedLeafData.ts";
-import { reactive } from "vue";
+import { reactive, shallowReactive, type ShallowReactive } from "vue";
 import { playLeafSound } from "./utils/sources.ts";
+import { allUpgrades, type UpgradeDefinition } from "./types/upgradeDefinition.ts";
 
 interface State {
     leaves: number;
     touched: TouchedLeafData[];
+    visibleUpgrades: ShallowReactive<(UpgradeDefinition | null)[]>;
+    remainingUpgrades: UpgradeDefinition[];
+}
+
+const maxVisible = 4;
+
+function initialVisibleUpgrades() {
+    return [ ...allUpgrades.slice(0, maxVisible), ...new Array(Math.max(0, maxVisible - allUpgrades.length)).fill(null) ];
 }
 
 const store = defineStore("touch-leaves", {
-    state: (): State => ({ leaves: 0, touched: reactive([]) }),
+    state: (): State => ({
+        leaves: 0,
+        touched: reactive([]),
+        visibleUpgrades: shallowReactive(initialVisibleUpgrades()),
+        remainingUpgrades: [ ...allUpgrades ]
+    }),
     actions: {
         touch(amount: number) {
             amount = Math.floor(amount);
