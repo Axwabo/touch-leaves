@@ -17,7 +17,10 @@ const icon = ref(getIcon());
 
 const keyframes = [ { top: "0", opacity: "1" }, { top: "-1em", opacity: "0.8" }, { top: "-2em", opacity: "0" } ];
 
-onMounted(animate);
+onMounted(() => {
+    animate();
+    sound.value?.addEventListener("ended", () => data.completed = true);
+});
 
 watch(() => data.completed, value => !value && animate());
 
@@ -36,7 +39,7 @@ function animate() {
         duration: 500,
         easing: "ease-out",
         fill: "forwards"
-    }).addEventListener("finish", () => data.completed = true);
+    });
 }
 </script>
 
