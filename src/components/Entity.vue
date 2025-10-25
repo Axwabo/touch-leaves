@@ -23,6 +23,7 @@ const x = entity.x + "rem";
     position: absolute;
     top: 0;
     left: 50%;
-    translate: calc(v-bind(x) - 50%);
+    translate: calc(v-bind(x) - 50%) -80%;
+    font-size: 3em;
 }
 </style>

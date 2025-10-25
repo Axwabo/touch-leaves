@@ -2,25 +2,29 @@
 import type { UpgradeDefinition } from "../../types/upgradeDefinition.ts";
 import useStore from "../../store.ts";
 import { storeToRefs } from "pinia";
+import processUpgrade from "../../utils/upgradeProcessor.ts";
 
 const { upgrade } = defineProps<{ upgrade: UpgradeDefinition | null; }>();
 
-const { leaves } = storeToRefs(useStore());
+const store = useStore();
+
+const { leaves } = storeToRefs(store);
 </script>
 
 <template>
-    <div class="upgrade-card" :class="{ disabled: leaves < (upgrade?.cost ?? 0) }">
-        <div v-if="upgrade" class="content">
+    <button class="upgrade-card" :class="{ disabled: !upgrade || leaves < upgrade.cost }" v-on:click="processUpgrade(upgrade, store)">
+        <span v-if="upgrade" class="content">
             {{ upgrade.type }}
             {{ upgrade.entity }}
             <br>
             {{ upgrade.cost }} 🍂
-        </div>
-    </div>
+        </span>
+    </button>
 </template>
 
 <style scoped>
 .upgrade-card {
+    border: none;
     background-color: rgba(30, 30, 30, 0.5);
     border-radius: 0.5em;
     padding: 1em;

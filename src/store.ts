@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, type Store as PiniaStore, type StoreDefinition } from "pinia";
 import type TouchedLeafData from "./types/touchedLeafData.ts";
 import { reactive, shallowReactive, type ShallowReactive } from "vue";
 import { playLeafSound } from "./utils/sources.ts";
@@ -25,7 +25,7 @@ const store = defineStore("touch-leaves", {
         touched: reactive([]),
         entities: reactive([]),
         visibleUpgrades: shallowReactive(initialVisibleUpgrades()),
-        remainingUpgrades: [ ...allUpgrades ]
+        remainingUpgrades: allUpgrades.slice(4)
     }),
     actions: {
         touch(amount: number, manual?: boolean) {
@@ -50,6 +50,8 @@ const store = defineStore("touch-leaves", {
         }
     }
 });
+
+export type Store = typeof store extends StoreDefinition<infer Id, infer S, infer G, infer A> ? PiniaStore<Id, S, G, A> : never;
 
 export default function useStore() {
     return store();
