@@ -1,6 +1,12 @@
-# Vue 3 + TypeScript + Vite
+# Touch Leaves
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out
-the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+An autumn-themed grass touching simulator inspired by Discord's "The Last Meadow"
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+This is a PWA, meaning you can download it and play offline!
+
+# Frameworks & Libraries
+
+- Vue
+- Vite
+- Vite-PWA
+- DnyaPuff font

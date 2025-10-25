@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import type TouchedLeafData from "./types/touchedLeafData.ts";
 import { reactive } from "vue";
+import { playLeafSound } from "./utils/sources.ts";
 
 interface State {
     leaves: number;
@@ -14,6 +15,8 @@ const store = defineStore("touch-leaves", {
             amount = Math.floor(amount);
             if (amount === 0)
                 return;
+            if (amount > 0)
+                playLeafSound();
             this.leaves += amount;
             for (const e of this.touched) {
                 if (!e.completed)
