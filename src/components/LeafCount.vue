@@ -17,10 +17,12 @@ useInterval(() => {
 </script>
 
 <template>
-    <h2 id="leafCount">{{ leaves.toString().padStart(8, "0") }}</h2>
+    <h2 id="leafCount"><span class="zeroes">{{ "0".repeat(8 - Math.ceil(Math.log10(leaves))) }}</span>{{ leaves }}</h2>
     <span>{{ perSecond }} {{ perSecond === 1 ? "leaf" : "leaves" }} touched per second</span>
 </template>
 
 <style scoped>
-
+.zeroes {
+    opacity: 0.7;
+}
 </style>
