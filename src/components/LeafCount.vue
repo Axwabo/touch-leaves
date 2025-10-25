@@ -17,7 +17,7 @@ useInterval(() => {
 </script>
 
 <template>
-    <h2 id="leafCount"><span class="zeroes">{{ "0".repeat(8 - Math.ceil(Math.log10(leaves))) }}</span>{{ leaves }}</h2>
+    <h2 id="leafCount"><span class="zeroes">{{ "0".repeat(8 - (leaves === 0 ? 0 : Math.ceil(Math.log10(leaves)))) }}</span>{{ leaves }}</h2>
     <span>{{ perSecond }} {{ perSecond === 1 ? "leaf" : "leaves" }} touched per second</span>
 </template>
 
