@@ -22,6 +22,16 @@ const { touch } = useStore();
     gap: 1rem;
     user-select: none;
     font-size: 2em;
+    height: 6em;
+}
+
+#touch.rainbow {
+    color: transparent;
+    background-image: linear-gradient(in oklab to right, #E40303, #FF8C00, #FFED00, #008026, #004CFF, #732982, #E40303);
+    background-clip: text;
+    animation: background 2s linear infinite;
+    background-size: 5em 100%;
+    filter: brightness(1.5);
 }
 
 .leaf {
@@ -31,5 +41,14 @@ const { touch } = useStore();
 
 .title {
     font-size: 5rem;
+}
+
+@keyframes background {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: 5em;
+    }
 }
 </style>
