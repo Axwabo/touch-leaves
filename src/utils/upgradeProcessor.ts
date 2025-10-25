@@ -1,6 +1,7 @@
 import type { EntityUpgrade, UpgradeDefinition } from "../types/upgradeDefinition.ts";
 import type { Store } from "../store.ts";
 import { Squirrel } from "../types/entities/squirrel.ts";
+import { Rose } from "../types/entities/rose.ts";
 
 export default function processUpgrade(definition: UpgradeDefinition | null, store: Store) {
     if (definition == null)
@@ -21,6 +22,9 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
 
 function addEntity(definition: EntityUpgrade, store: Store) {
     switch (definition.entity) {
+        case "rose":
+            store.entities.push(new Rose());
+            break;
         case "squirrel":
             store.entities.push(new Squirrel());
             break;

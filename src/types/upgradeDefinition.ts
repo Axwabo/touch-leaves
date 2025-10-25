@@ -17,6 +17,11 @@ export const allUpgrades: UpgradeDefinition[] = [
     {
         type: "entity",
         cost: 30,
+        entity: "rose"
+    },
+    {
+        type: "entity",
+        cost: 100,
         entity: "squirrel"
     }
 ];
