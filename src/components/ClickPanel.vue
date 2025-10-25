@@ -5,7 +5,7 @@ const { touch } = useStore();
 </script>
 
 <template>
-    <button id="touch" v-on:click="touch(1)">
+    <button id="touch" v-on:click="touch(1, true)">
         <span class="leaf">🍁</span>
         <span class="title">touch<br>leaves</span>
         <span class="leaf">🍂</span>

@@ -3,10 +3,12 @@ import type TouchedLeafData from "./types/touchedLeafData.ts";
 import { reactive, shallowReactive, type ShallowReactive } from "vue";
 import { playLeafSound } from "./utils/sources.ts";
 import { allUpgrades, type UpgradeDefinition } from "./types/upgradeDefinition.ts";
+import type { EntityData } from "./types/entityData.ts";
 
 interface State {
     leaves: number;
     touched: TouchedLeafData[];
+    entities: EntityData[];
     visibleUpgrades: ShallowReactive<(UpgradeDefinition | null)[]>;
     remainingUpgrades: UpgradeDefinition[];
 }
@@ -21,17 +23,20 @@ const store = defineStore("touch-leaves", {
     state: (): State => ({
         leaves: 0,
         touched: reactive([]),
+        entities: reactive([]),
         visibleUpgrades: shallowReactive(initialVisibleUpgrades()),
         remainingUpgrades: [ ...allUpgrades ]
     }),
     actions: {
-        touch(amount: number) {
+        touch(amount: number, manual?: boolean) {
             amount = Math.floor(amount);
             if (amount === 0)
                 return;
+            this.leaves += amount;
+            if (!manual)
+                return;
             if (amount > 0)
                 playLeafSound();
-            this.leaves += amount;
             for (const e of this.touched) {
                 if (!e.completed)
                     continue;

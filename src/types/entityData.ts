@@ -1,9 +1,8 @@
-interface BaseEntityData {
-    leavesPerSecond: number;
-}
+import type { Squirrel } from "./entities/squirrel.ts";
 
-interface Squirrel extends BaseEntityData {
-    type: "squirrel";
+export interface BaseEntity {
+    readonly leavesPerSecond: number;
+    readonly x: number;
 }
 
 export type EntityData = Squirrel;
