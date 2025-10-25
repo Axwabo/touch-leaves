@@ -6,16 +6,24 @@ const { touch } = useStore();
 
 <template>
     <div id="touch" v-on:click="touch(1)">
+        <span class="leaf">🍁</span>
         <h1>touch<br>leaves</h1>
+        <span class="leaf">🍂</span>
     </div>
 </template>
 
 <style scoped>
 #touch {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    user-select: none;
+    font-size: 2em;
 }
 
-#touch h1 {
-    user-select: none;
+.leaf {
+    line-height: 0;
+    font-size: 5em;
 }
 </style>

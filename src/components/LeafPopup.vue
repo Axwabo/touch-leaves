@@ -4,7 +4,9 @@ import type TouchedLeafData from "../types/touchedLeafData.ts";
 
 const { data } = defineProps<{ data: TouchedLeafData; }>();
 
-const popup = useTemplateRef("popup");
+const text = useTemplateRef("text");
+
+const sound = useTemplateRef("audio");
 
 const icon = Math.random() < 0.5 ? "🍁" : "🍂";
 
@@ -15,10 +17,15 @@ onMounted(animate);
 watch(() => data.completed, value => !value && animate());
 
 function animate() {
-    if (!popup.value)
+    const audio = sound.value;
+    if (audio) {
+        audio.currentTime = 0;
+        void audio.play();
+    }
+    if (!text.value)
         return;
-    popup.value.getAnimations()[0]?.cancel();
-    popup.value.animate(keyframes, {
+    text.value.getAnimations()[0]?.cancel();
+    text.value.animate(keyframes, {
         duration: 500,
         easing: "ease-out",
         fill: "forwards"
@@ -27,7 +34,8 @@ function animate() {
 </script>
 
 <template>
-    <span :class="{'leaf-popup': true, positive: data.amount > 0}" ref="popup">
+    <audio src="../assets/leaf.ogg" ref="audio" autoplay></audio>
+    <span :class="{'leaf-popup': true, positive: data.amount > 0}" ref="text">
         {{ icon }}
         <span class="amount">{{ data.amount }}</span>
     </span>
