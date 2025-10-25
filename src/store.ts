@@ -20,11 +20,11 @@ const store = defineStore("touch-leaves", {
                     continue;
                 e.completed = false;
                 e.amount = amount;
-                break;
+                return;
             }
 
             if (this.touched.length < 100)
-                this.touched.push({ amount, completed: false });
+                this.touched.push({ amount, completed: false, id: performance.now().toString(16) });
         }
     }
 });

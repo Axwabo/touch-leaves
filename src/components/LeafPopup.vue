@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { onMounted, useTemplateRef, watch } from "vue";
+import { onMounted, ref, useTemplateRef, watch } from "vue";
 import type TouchedLeafData from "../types/touchedLeafData.ts";
+import src from "../assets/audio/leaf.ogg";
 
 const { data } = defineProps<{ data: TouchedLeafData; }>();
 
@@ -8,7 +9,11 @@ const text = useTemplateRef("text");
 
 const sound = useTemplateRef("audio");
 
-const icon = Math.random() < 0.5 ? "🍁" : "🍂";
+function getIcon() {
+    return Math.random() < 0.5 ? "🍁" : "🍂";
+}
+
+const icon = ref(getIcon());
 
 const keyframes = [ { top: "0", opacity: "1" }, { top: "-1em", opacity: "0.8" }, { top: "-2em", opacity: "0" } ];
 
@@ -17,15 +22,17 @@ onMounted(animate);
 watch(() => data.completed, value => !value && animate());
 
 function animate() {
+    const span = text.value;
     const audio = sound.value;
-    if (audio) {
+    if (!span || !audio)
+        return;
+    if (audio.currentTime >= audio.duration) {
         audio.currentTime = 0;
         void audio.play();
     }
-    if (!text.value)
-        return;
-    text.value.getAnimations()[0]?.cancel();
-    text.value.animate(keyframes, {
+    icon.value = getIcon();
+    span.getAnimations()[0]?.cancel();
+    span.animate(keyframes, {
         duration: 500,
         easing: "ease-out",
         fill: "forwards"
@@ -34,7 +41,7 @@ function animate() {
 </script>
 
 <template>
-    <audio src="../assets/leaf.ogg" ref="audio" autoplay></audio>
+    <audio :src="src" ref="audio" autoplay></audio>
     <span :class="{'leaf-popup': true, positive: data.amount > 0}" ref="text">
         {{ icon }}
         <span class="amount">{{ data.amount }}</span>
