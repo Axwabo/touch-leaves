@@ -50,8 +50,13 @@
     },
     {
         "type": "Levéls",
-        "cost": 500,
+        "cost": 2000,
         "description": "Level up to get more leaves",
         "icon": "📈"
+    },
+    {
+        "type": "entity",
+        "cost": 1200,
+        "entity": "Cherry Blossom"
     }
 ]
