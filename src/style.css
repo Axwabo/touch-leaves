@@ -20,7 +20,7 @@ body {
     display: grid;
     place-items: center;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 button {

@@ -18,5 +18,9 @@
         "leavesPerSecond": 10,
         "y": 5,
         "icon": "🐿"
+    },
+    "Wind": {
+        "leavesPerSecond": 50,
+        "effect": "wind"
     }
 }

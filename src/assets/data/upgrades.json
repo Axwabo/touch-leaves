@@ -36,5 +36,11 @@
         "type": "entity",
         "cost": 500,
         "entity": "Squirrel"
+    },
+    {
+        "type": "entity",
+        "cost": 1000,
+        "entity": "Wind",
+        "icon": "💨"
     }
 ]

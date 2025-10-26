@@ -13,11 +13,15 @@ interface StaticEntity extends EmojiEntity {
 }
 
 interface ShuttlingEntity extends EmojiEntity {
-    readonly  y: number;
+    readonly y: number;
+}
+
+interface EffectEntity extends BaseEntity {
+    readonly type: "wind";
 }
 
 export type EntityType = keyof typeof entities;
 
-export type EntityData = BaseEntity | EmojiEntity | StaticEntity | ShuttlingEntity;
+export type EntityData = BaseEntity | EmojiEntity | StaticEntity | ShuttlingEntity | EffectEntity;
 
 export const allEntities = entities as Record<EntityType, EntityData>;
