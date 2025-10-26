@@ -7,6 +7,7 @@ import type { EntityType } from "./types/entityData.ts";
 
 interface State {
     leaves: number;
+    touchedThisSecond: number;
     touched: TouchedLeafData[];
     entities: EntityType[];
     visibleUpgrades: ShallowReactive<(UpgradeDefinition | null)[]>;
@@ -24,6 +25,7 @@ function initialVisibleUpgrades() {
 const store = defineStore("touch-leaves", {
     state: (): State => ({
         leaves: 0,
+        touchedThisSecond: 0,
         touched: reactive([]),
         entities: reactive([]),
         visibleUpgrades: shallowReactive(initialVisibleUpgrades()),
@@ -36,6 +38,8 @@ const store = defineStore("touch-leaves", {
             amount = Math.floor(amount);
             if (amount === 0)
                 return;
+            if (amount > 0)
+                this.touchedThisSecond += amount;
             this.leaves += amount;
             if (!manual)
                 return;
