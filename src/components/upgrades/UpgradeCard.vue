@@ -17,17 +17,31 @@ const { leaves } = storeToRefs(store);
 
 <template>
     <button class="upgrade-card" :disabled="!upgrade || leaves < upgrade.cost" v-on:click="processUpgrade(upgrade, store)">
-        <span v-if="upgrade" class="content">
-            <span class="icon">{{ entity && "icon" in entity ? entity.icon : upgrade.type }}</span>
-            <br>
-            <br>
-            {{ upgrade.cost }} 🍂
-        </span>
+        <template v-if="upgrade">
+            <span class="popup-anchor">
+                <span class="popup">
+                    <i>{{ entity ? upgrade.entity : upgrade.type }}</i>
+                    <br>
+                    {{ upgrade.description }}
+                    <br>
+                    <span v-if="entity">+{{ entity.leavesPerSecond }} 🍂/s</span>
+                </span>
+            </span>
+            <span class="content">
+                <span class="icon">{{ entity && "icon" in entity ? entity.icon : upgrade.type }}</span>
+                <br>
+                <br>
+                {{ upgrade.cost }} 🍂
+            </span>
+        </template>
     </button>
 </template>
 
 <style scoped>
 .upgrade-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     border: none;
     background-color: rgba(30, 30, 30, 0.5);
     border-radius: 0.5em;
@@ -46,5 +60,33 @@ const { leaves } = storeToRefs(store);
 
 .icon {
     font-size: 4em;
+}
+
+.popup-anchor {
+    position: relative;
+    pointer-events: none;
+}
+
+.popup {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    translate: -50% 0;
+    width: max-content;
+    padding: 1em;
+    background-color: #323232;
+    border: 3px solid gray;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.upgrade-card:hover .popup {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .popup {
+        transition: none;
+    }
 }
 </style>

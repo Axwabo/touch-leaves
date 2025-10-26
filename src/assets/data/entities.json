@@ -1,10 +1,10 @@
 {
-    "rose": {
+    "Rose": {
         "leavesPerSecond": 3,
         "x": 25,
         "icon": "🌹"
     },
-    "squirrel": {
+    "Squirrel": {
         "leavesPerSecond": 5,
         "x": 20,
         "icon": "🐿"

@@ -1,8 +1,9 @@
-import type { EntityType } from "./entityData.ts";
+import { type EntityType } from "./entityData.ts";
 import upgrades from "../assets/data/upgrades.json";
 
 interface BaseUpgrade {
     cost: number;
+    description: string;
 }
 
 interface EntityUpgrade extends BaseUpgrade {

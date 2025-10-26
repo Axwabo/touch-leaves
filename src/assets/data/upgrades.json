@@ -2,11 +2,11 @@
     {
         "type": "entity",
         "cost": 30,
-        "entity": "rose"
+        "entity": "Rose"
     },
     {
         "type": "entity",
         "cost": 100,
-        "entity": "squirrel"
+        "entity": "Squirrel"
     }
 ]
