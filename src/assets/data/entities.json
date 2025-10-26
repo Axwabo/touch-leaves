@@ -4,8 +4,13 @@
         "x": 25,
         "icon": "🌹"
     },
+    "Sunflower": {
+        "leavesPerSecond": 4,
+        "x": 30,
+        "icon": "🌻"
+    },
     "Squirrel": {
-        "leavesPerSecond": 5,
+        "leavesPerSecond": 6,
         "x": 20,
         "icon": "🐿"
     }

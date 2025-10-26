@@ -16,6 +16,9 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
         case "entity":
             store.entities.push(definition.entity);
             break;
+        case "Music":
+            store.music = true;
+            break;
         case "Speed":
             store.speed = true;
             break;

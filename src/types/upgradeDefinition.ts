@@ -18,6 +18,7 @@ interface TypeUpgrade<T extends string> extends BaseUpgrade {
 
 export type UpgradeDefinition = EntityUpgrade
     | TypeUpgrade<"Speed">
-    | TypeUpgrade<"Rainbow Leaves">;
+    | TypeUpgrade<"Rainbow Leaves">
+    | TypeUpgrade<"Music">;
 
 export const allUpgrades = upgrades as UpgradeDefinition[];

@@ -23,12 +23,14 @@ body {
 }
 
 button {
+    border: none;
     padding: 0.6em 1.2em;
     font-weight: 500;
     font-family: inherit;
     background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
+    color: inherit;
 }
 
 #app {
@@ -36,8 +38,4 @@ button {
     align-items: center;
     flex-direction: column;
     gap: 2rem;
-}
-
-button {
-    color: inherit;
 }

@@ -7,7 +7,13 @@
     {
         "type": "entity",
         "cost": 100,
-        "entity": "Squirrel"
+        "entity": "Sunflower"
+    },
+    {
+        "type": "Music",
+        "cost": 50,
+        "description": "Break the silence",
+        "icon": "🎶"
     },
     {
         "type": "Speed",
@@ -20,5 +26,10 @@
         "cost": 1500,
         "description": "3 🍂 for every touch",
         "icon": "🌈"
+    },
+    {
+        "type": "entity",
+        "cost": 500,
+        "entity": "Squirrel"
     }
 ]

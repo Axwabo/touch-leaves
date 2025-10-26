@@ -5,6 +5,7 @@ import LeafCount from "./components/LeafCount.vue";
 import LeafPopupContainer from "./components/LeafPopupContainer.vue";
 import UpgradesPanel from "./components/upgrades/UpgradePanel.vue";
 import EntityList from "./components/entities/EntityList.vue";
+import Music from "./components/Music.vue";
 </script>
 
 <template>
@@ -13,5 +14,6 @@ import EntityList from "./components/entities/EntityList.vue";
     <LeafCount />
     <EntityList />
     <UpgradesPanel />
+    <Music />
     <PWABadge />
 </template>
