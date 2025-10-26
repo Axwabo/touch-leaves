@@ -8,15 +8,16 @@ export function playLeafSound() {
     const container = document.getElementById("leafSoundContainer");
     if (!container)
         return;
-    const available = Array.from(container.querySelectorAll("audio")).filter(e => e.ended);
+    const src = item(leaves)!;
+    const available = Array.from(container.querySelectorAll("audio")).filter(e => e.ended && e.src === src);
     if (available.length) {
-        const source = item(available)!;
+        const source = available[0]!;
         source.currentTime = 0;
         void source.play();
         return;
     }
     const source = document.createElement("audio");
     source.autoplay = true;
-    source.src = item(leaves)!;
+    source.src = src;
     container.append(source);
 }
