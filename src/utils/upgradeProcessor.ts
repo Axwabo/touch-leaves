@@ -1,6 +1,5 @@
 import type { UpgradeDefinition } from "../types/upgradeDefinition.ts";
 import type { Store } from "../store.ts";
-import { allEntities } from "../types/entityData.ts";
 
 export default function processUpgrade(definition: UpgradeDefinition | null, store: Store) {
     if (definition == null)
@@ -17,7 +16,7 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
             store.speed = true;
             break;
         case "entity":
-            store.entities.push(allEntities[definition.entity]);
+            store.entities.push(definition.entity);
             break;
     }
 }

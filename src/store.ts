@@ -3,12 +3,12 @@ import type TouchedLeafData from "./types/touchedLeafData.ts";
 import { reactive, shallowReactive, type ShallowReactive } from "vue";
 import { playLeafSound } from "./utils/sources.ts";
 import { allUpgrades, type UpgradeDefinition } from "./types/upgradeDefinition.ts";
-import type { EntityData } from "./types/entityData.ts";
+import type { EntityType } from "./types/entityData.ts";
 
 interface State {
     leaves: number;
     touched: TouchedLeafData[];
-    entities: EntityData[];
+    entities: EntityType[];
     visibleUpgrades: ShallowReactive<(UpgradeDefinition | null)[]>;
     remainingUpgrades: UpgradeDefinition[];
     speed: boolean;

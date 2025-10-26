@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import useStore from "../store.ts";
+import useStore from "../../store.ts";
 import Entity from "./Entity.vue";
 
 const { entities } = useStore();
@@ -8,7 +8,7 @@ const { entities } = useStore();
 <template>
     <div id="entities">
         <hr>
-        <Entity v-for="entity in entities" :entity />
+        <Entity v-for="type in entities" :type :key="type" />
     </div>
 </template>
 
