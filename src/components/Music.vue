@@ -34,7 +34,7 @@ function apply(value: number) {
 <style scoped>
 .music {
     position: absolute;
-    top: 0.5rem;
+    top: 2rem;
     right: 0.5rem;
     display: grid;
     text-align: center;

@@ -7,6 +7,7 @@ import UpgradesPanel from "./components/upgrades/UpgradePanel.vue";
 import EntityList from "./components/entities/EntityList.vue";
 import Music from "./components/Music.vue";
 import AudioPools from "./components/AudioPools.vue";
+import Alert from "./components/Alert.vue";
 </script>
 
 <template>
@@ -17,5 +18,6 @@ import AudioPools from "./components/AudioPools.vue";
     <EntityList />
     <UpgradesPanel />
     <Music />
+    <Alert />
     <PWABadge />
 </template>
