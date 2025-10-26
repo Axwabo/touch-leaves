@@ -5,11 +5,11 @@ import { reactive } from "vue";
 import LeafPopup from "../LeafPopup.vue";
 import type TouchedLeafData from "../../types/touchedLeafData.ts";
 
-const { index } = defineProps<{ index: number; }>();
+const emit = defineEmits([ "click" ]);
 
-const { touch, entities } = useStore();
+const { touch } = useStore();
 
-const top = `${Math.random() * 50 - 25}vh`;
+const top = `${Math.random() * 90}vh`;
 const left = `${Math.random() * 90}vw`;
 
 const data: TouchedLeafData = reactive({
@@ -25,7 +25,7 @@ useInterval(() => {
 </script>
 
 <template>
-    <button class="cricket" v-on:click="entities.splice(index, 1)">
+    <button class="cricket" v-on:click="emit('click')">
         <span class="popup-anchor"><LeafPopup :data /></span>
         <span class="emoji">🦗</span>
     </button>

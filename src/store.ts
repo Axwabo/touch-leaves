@@ -9,13 +9,14 @@ interface State {
     leaves: number;
     touchedThisSecond: number;
     touched: TouchedLeafData[];
-    entities: (EntityType | "Cricket")[];
+    entities: EntityType[];
     visibleUpgrades: UpgradeDefinition[];
     remainingUpgrades: UpgradeDefinition[];
     speed: boolean;
     rainbow: boolean;
     music: boolean;
     level: number;
+    crickets: { id: string, deleted: boolean }[];
 }
 
 const maxVisible = 4;
@@ -31,7 +32,8 @@ const store = defineStore("touch-leaves", {
         speed: false,
         rainbow: false,
         music: false,
-        level: 1
+        level: 1,
+        crickets: reactive([])
     }),
     actions: {
         touch(amount: number, manual?: boolean) {
