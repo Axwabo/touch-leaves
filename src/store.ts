@@ -9,6 +9,7 @@ interface State {
     leaves: number;
     touchedThisSecond: number;
     manuallyTouched: number;
+    markiplier: number;
     touched: TouchedLeafData[];
     entities: EntityType[];
     visibleUpgrades: UpgradeDefinition[];
@@ -28,6 +29,7 @@ const store = defineStore("touch-leaves", {
         leaves: 0,
         touchedThisSecond: 0,
         manuallyTouched: 0,
+        markiplier: 1,
         touched: reactive([]),
         entities: reactive([]),
         visibleUpgrades: shallowReactive([ ...allUpgrades.slice(0, maxVisible) ]),

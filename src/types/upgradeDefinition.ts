@@ -16,12 +16,16 @@ interface TypeUpgrade<T extends string> extends BaseUpgrade {
     type: T;
 }
 
+interface MultiplierUpgrade<T extends string> extends TypeUpgrade<T> {
+    Markiplier: number;
+}
+
 export type UpgradeDefinition = EntityUpgrade
     | TypeUpgrade<"Speed">
-    | TypeUpgrade<"Rainbow Leaves">
     | TypeUpgrade<"Music">
     | TypeUpgrade<"Levéls">
     | TypeUpgrade<"Pest Remover">
-    | TypeUpgrade<"Nice Words">;
+    | MultiplierUpgrade<"Rainbow Leaves">
+    | MultiplierUpgrade<"Nice Words">;
 
 export const allUpgrades = (upgrades as UpgradeDefinition[]).sort((a, b) => a.cost - b.cost);

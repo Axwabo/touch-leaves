@@ -28,17 +28,19 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
         case "Speed":
             store.speed = true;
             break;
-        case "Rainbow Leaves":
-            store.rainbow = true;
-            break;
         case "Levéls":
             store.level = 1;
             break;
         case "Pest Remover":
             store.pestRemover = true;
             break;
+        case "Rainbow Leaves":
+            store.rainbow = true;
+            store.markiplier *= definition.Markiplier;
+            break;
         case "Nice Words":
             store.niceWords = true;
+            store.markiplier *= definition.Markiplier;
             break;
     }
 }

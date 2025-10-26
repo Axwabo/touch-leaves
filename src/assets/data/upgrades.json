@@ -38,7 +38,8 @@
     {
         "type": "Rainbow Leaves",
         "cost": 1500,
-        "description": "3 🍂 for every touch",
+        "description": "Slaaayyyyy 💅",
+        "Markiplier": 1.5,
         "icon": "🌈"
     },
     {
@@ -72,8 +73,9 @@
     },
     {
         "type": "Nice Words",
-        "cost": 2400,
+        "cost": 3600,
         "description": "You're doing great!",
+        "Markiplier": 2,
         "icon": "🗣"
     }
 ]

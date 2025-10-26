@@ -4,11 +4,11 @@ import { storeToRefs } from "pinia";
 
 const { touch } = useStore();
 
-const { rainbow } = storeToRefs(useStore());
+const { rainbow, markiplier } = storeToRefs(useStore());
 </script>
 
 <template>
-    <button id="touch" v-on:click="touch(rainbow ? 3 : 1, true)" :class="{ rainbow }">
+    <button id="touch" v-on:click="touch(Math.round(markiplier), true)" :class="{ rainbow }">
         <span class="leaf">🍁</span>
         <span class="title">touch<br>leaves</span>
         <span class="leaf">🍂</span>
