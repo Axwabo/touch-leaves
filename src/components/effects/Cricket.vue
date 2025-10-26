@@ -14,7 +14,7 @@ const left = `${Math.random() * 90}vw`;
 
 const data: TouchedLeafData = reactive({
     completed: false,
-    amount: -10,
+    amount: -20,
     id: ""
 });
 

@@ -21,8 +21,9 @@ const { leaves } = storeToRefs(store);
             <span class="popup-anchor">
                 <span class="popup">
                     <i>{{ upgrade.type === "entity" ? upgrade.entity : upgrade.type }}</i>
-                    <br>
-                    {{ upgrade.description }}
+                    <template v-if="upgrade.description">
+                        <br>{{ upgrade.description }}
+                    </template>
                     <br>
                     <span v-if="entity">+{{ entity.leavesPerSecond }} 🍂/s</span>
                 </span>

@@ -15,7 +15,7 @@
         "icon": "🌻"
     },
     "Squirrel": {
-        "leavesPerSecond": 10,
+        "leavesPerSecond": 8,
         "y": 5,
         "icon": "🐿"
     },
@@ -29,7 +29,7 @@
         "icon": "🌷"
     },
     "Cherry Blossom": {
-        "leavesPerSecond": 40,
+        "leavesPerSecond": 10,
         "x": -30,
         "icon": "🌸"
     }
