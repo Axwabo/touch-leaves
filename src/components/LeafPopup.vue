@@ -30,9 +30,9 @@ function animate() {
 </script>
 
 <template>
-    <span class="leaf-popup" ref="text">
+    <span :class="{'leaf-popup': true, positive: data.amount > 0}" ref="text">
         {{ leaf }}
-        <span class="amount">+{{ data.amount }}</span>
+        <span class="amount">{{ data.amount }}</span>
     </span>
 </template>
 
@@ -43,6 +43,14 @@ function animate() {
     left: 0;
     translate: -50% 0;
     white-space: nowrap;
+    color: red;
+}
+
+.leaf-popup.positive {
     color: #0f0;
+}
+
+.leaf-popup.positive .amount::before {
+    content: "+";
 }
 </style>
