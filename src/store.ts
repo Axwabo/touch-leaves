@@ -9,7 +9,7 @@ interface State {
     leaves: number;
     touchedThisSecond: number;
     touched: TouchedLeafData[];
-    entities: EntityType[];
+    entities: (EntityType | "Cricket")[];
     visibleUpgrades: UpgradeDefinition[];
     remainingUpgrades: UpgradeDefinition[];
     speed: boolean;
@@ -31,7 +31,7 @@ const store = defineStore("touch-leaves", {
         speed: false,
         rainbow: false,
         music: false,
-        level: 0
+        level: 1
     }),
     actions: {
         touch(amount: number, manual?: boolean) {

@@ -2,22 +2,26 @@
     {
         "type": "entity",
         "cost": 40,
-        "entity": "Rose"
+        "entity": "Rose",
+        "description": "Decorate the area"
     },
     {
         "type": "entity",
         "cost": 100,
-        "entity": "Sunflower"
+        "entity": "Sunflower",
+        "description": "More decoration"
     },
     {
         "type": "entity",
         "cost": 30,
-        "entity": "Ant"
+        "entity": "Ant",
+        "description": "Disrupts some leaves"
     },
     {
         "type": "entity",
         "cost": 90,
-        "entity": "Tulip"
+        "entity": "Tulip",
+        "description": "More flowers"
     },
     {
         "type": "Music",
@@ -40,7 +44,8 @@
     {
         "type": "entity",
         "cost": 500,
-        "entity": "Squirrel"
+        "entity": "Squirrel",
+        "description": "Throws some leaves as it digs"
     },
     {
         "type": "entity",
