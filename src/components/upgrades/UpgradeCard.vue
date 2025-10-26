@@ -27,8 +27,10 @@ const { leaves } = storeToRefs(store);
                     <span v-if="entity">+{{ entity.leavesPerSecond }} 🍂/s</span>
                 </span>
             </span>
-            <span class="icon">{{ entity && "icon" in entity ? entity.icon : upgrade.icon ?? upgrade.type }}</span>
-            {{ upgrade.cost }} 🍂
+            <span class="content">
+                <span class="icon">{{ entity && "icon" in entity ? entity.icon : upgrade.icon ?? upgrade.type }}</span>
+                {{ upgrade.cost }} 🍂
+            </span>
         </template>
     </button>
 </template>
@@ -36,7 +38,7 @@ const { leaves } = storeToRefs(store);
 <style scoped>
 .upgrade-card {
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 0 1fr;
     border: none;
     background-color: rgba(30, 30, 30, 0.5);
     border-radius: 0.5em;
@@ -47,12 +49,22 @@ const { leaves } = storeToRefs(store);
 
 .upgrade-card[disabled] {
     cursor: not-allowed;
+}
+
+.content {
+    transition: opacity 0.2s;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+.upgrade-card[disabled] .content {
     opacity: 0.5;
 }
 
 .icon {
     font-size: 4em;
     margin-bottom: 0.5rem;
+    align-self: end;
 }
 
 .popup-anchor {
@@ -79,7 +91,7 @@ const { leaves } = storeToRefs(store);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .popup {
+    .popup, .content {
         transition: none;
     }
 }
