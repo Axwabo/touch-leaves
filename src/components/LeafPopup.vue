@@ -44,6 +44,7 @@ function animate() {
     translate: -50% 0;
     white-space: nowrap;
     color: red;
+    font-size: 1.5rem;
 }
 
 .leaf-popup.positive {

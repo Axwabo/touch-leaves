@@ -40,8 +40,8 @@ const { leaves } = storeToRefs(store);
     display: grid;
     grid-template-rows: 0 1fr;
     border: none;
-    background-color: rgba(30, 30, 30, 0.5);
-    border-radius: 0.5em;
+    background-color: rgba(50, 50, 50, 0.5);
+    border-radius: 0.5rem;
     padding: 1em;
     text-align: center;
     cursor: pointer;
@@ -55,6 +55,7 @@ const { leaves } = storeToRefs(store);
     transition: opacity 0.2s;
     display: grid;
     grid-template-rows: 1fr auto;
+    gap: 1em;
 }
 
 .upgrade-card[disabled] .content {
@@ -63,7 +64,6 @@ const { leaves } = storeToRefs(store);
 
 .icon {
     font-size: 4em;
-    margin-bottom: 0.5rem;
     align-self: end;
 }
 

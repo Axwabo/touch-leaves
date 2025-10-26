@@ -24,7 +24,7 @@ const { rainbow } = storeToRefs(useStore());
     align-items: center;
     gap: 1rem;
     user-select: none;
-    font-size: 2em;
+    font-size: 3em;
     height: 6em;
     transition: opacity 0.2s;
 }

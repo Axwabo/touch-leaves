@@ -14,9 +14,11 @@ const { visibleUpgrades } = useStore();
 <style scoped>
 .upgrades {
     display: grid;
-    grid-template-columns: repeat(4, 8em);
-    gap: 1rem;
-    font-size: 0.5em;
+    grid-template-columns: repeat(4, 7em);
+    gap: 1em;
+    padding: 1em;
     height: 8em;
+    background-color: rgba(30, 30, 30, 0.5);
+    border-radius: 1rem;
 }
 </style>

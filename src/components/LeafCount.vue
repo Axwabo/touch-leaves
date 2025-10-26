@@ -24,13 +24,19 @@ useInterval(() => {
 </template>
 
 <style scoped>
+#leafCount {
+    display: grid;
+}
+
 #leafCount h2 {
-    text-align: center;
     margin: 0;
+    font-size: 3em;
+    text-align: center;
 }
 
 #leafCount > span {
     visibility: hidden;
+    text-align: center;
 }
 
 .zeroes {
