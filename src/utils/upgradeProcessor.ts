@@ -9,8 +9,12 @@ export default function processUpgrade(definition: UpgradeDefinition | null, sto
     store.leaves -= definition.cost;
     playPurchaseSound();
     const index = store.visibleUpgrades.indexOf(definition);
-    if (index !== -1)
-        store.visibleUpgrades[index] = store.remainingUpgrades.shift() || null;
+    if (index === -1)
+        return;
+    store.visibleUpgrades.splice(index, 1);
+    const remaining = store.remainingUpgrades.shift();
+    if (remaining)
+        store.visibleUpgrades.push(remaining);
 }
 
 function applyUpgrade(definition: UpgradeDefinition, store: Store) {

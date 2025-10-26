@@ -60,7 +60,7 @@ const { rainbow } = storeToRefs(useStore());
     }
 }
 
-@supports (background-image:  linear-gradient(in oklab to right, red, red)) {
+@supports (background-image: linear-gradient(in oklab to right, red, red)) {
     #touch.rainbow {
         background-image: linear-gradient(in oklab to right, #E40303, #FF8C00, #FFED00, #008026, #004CFF, #732982, #E40303);
     }
