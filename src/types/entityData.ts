@@ -14,6 +14,8 @@ interface StaticEntity extends EmojiEntity {
 
 interface ShuttlingEntity extends EmojiEntity {
     readonly y: number;
+    readonly speed: number;
+    readonly invert?: boolean;
 }
 
 interface EffectEntity extends BaseEntity {

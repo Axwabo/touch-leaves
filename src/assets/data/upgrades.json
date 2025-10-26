@@ -77,5 +77,10 @@
         "description": "You're doing great!",
         "Markiplier": 2,
         "icon": "🗣"
+    },
+    {
+        "type": "entity",
+        "cost": 1300,
+        "entity": "Snail"
     }
 ]

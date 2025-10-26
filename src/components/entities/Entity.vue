@@ -17,7 +17,7 @@ useInterval(() => touch(entity.value.leavesPerSecond));
 
 <template>
     <StaticEntity v-if="'x' in entity" :offset="entity.x" :icon="entity.icon" class="entity" />
-    <ShuttlingEntity v-else-if="'y' in entity" :offset="entity.y" :icon="entity.icon" class="entity" />
+    <ShuttlingEntity v-else-if="'y' in entity" :offset="entity.y" :icon="entity.icon" :speed="entity.speed" :invert="entity.invert" class="entity" />
 </template>
 
 <style scoped>

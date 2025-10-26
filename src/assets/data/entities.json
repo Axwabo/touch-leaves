@@ -2,7 +2,8 @@
     "Ant": {
         "leavesPerSecond": 2,
         "icon": "🐜",
-        "y": 3
+        "y": 3,
+        "speed": 10
     },
     "Rose": {
         "leavesPerSecond": 3,
@@ -17,7 +18,8 @@
     "Squirrel": {
         "leavesPerSecond": 8,
         "y": 5,
-        "icon": "🐿"
+        "icon": "🐿",
+        "speed": 20
     },
     "Wind": {
         "leavesPerSecond": 50,
@@ -32,5 +34,12 @@
         "leavesPerSecond": 10,
         "x": -30,
         "icon": "🌸"
+    },
+    "Snail": {
+        "leavesPerSecond": 6,
+        "y": -3,
+        "icon": "🐌",
+        "speed": 2,
+        "invert": true
     }
 }
