@@ -1,0 +1,12 @@
+{
+    "rose": {
+        "leavesPerSecond": 3,
+        "x": 25,
+        "icon": "🌹"
+    },
+    "squirrel": {
+        "leavesPerSecond": 5,
+        "x": 20,
+        "icon": "🐿"
+    }
+}

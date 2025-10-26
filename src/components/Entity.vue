@@ -9,7 +9,7 @@ const { touch } = useStore();
 
 useInterval(() => touch(entity.leavesPerSecond));
 
-const icon = entity.type === "squirrel" ? "🐿" : "🌹";
+const icon = "icon" in entity ? entity.icon : "what";
 
 const x = entity.x + "rem";
 </script>

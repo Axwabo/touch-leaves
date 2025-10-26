@@ -1,27 +1,15 @@
 import type { EntityType } from "./entityData.ts";
+import upgrades from "../assets/data/upgrades.json";
 
 interface BaseUpgrade {
     cost: number;
 }
 
-export interface EntityUpgrade extends BaseUpgrade {
+interface EntityUpgrade extends BaseUpgrade {
     type: "entity";
     entity: EntityType;
 }
 
 export type UpgradeDefinition = EntityUpgrade;
 
-export type UpgradeType = UpgradeDefinition["type"];
-
-export const allUpgrades: UpgradeDefinition[] = [
-    {
-        type: "entity",
-        cost: 30,
-        entity: "rose"
-    },
-    {
-        type: "entity",
-        cost: 100,
-        entity: "squirrel"
-    }
-];
+export const allUpgrades = upgrades as UpgradeDefinition[];

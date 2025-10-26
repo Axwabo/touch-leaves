@@ -1,11 +1,16 @@
-import type { Squirrel } from "./entities/squirrel.ts";
-import type { Rose } from "./entities/rose.ts";
+import entities from "../assets/data/entities.json";
 
-export interface BaseEntity {
+interface BaseEntity {
     readonly leavesPerSecond: number;
     readonly x: number;
 }
 
-export type EntityData = Squirrel | Rose;
+interface EmojiEntity extends BaseEntity {
+    readonly icon: string;
+}
 
-export type EntityType = EntityData["type"];
+export type EntityType = keyof typeof entities;
+
+export type EntityData = BaseEntity | EmojiEntity;
+
+export const allEntities = entities as Record<EntityType, EntityData>;
