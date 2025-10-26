@@ -24,6 +24,8 @@
         "effect": "wind"
     },
     "Tulip": {
-    
+        "leavesPerSecond": 5,
+        "x": -20,
+        "icon": "🌷"
     }
 }
