@@ -20,6 +20,7 @@ interface State {
     level: number;
     pestRemover: boolean;
     niceWords: boolean;
+    snake: boolean;
 }
 
 const maxVisible = 4;
@@ -39,7 +40,8 @@ const store = defineStore("touch-leaves", {
         music: false,
         level: 1,
         pestRemover: false,
-        niceWords: false
+        niceWords: false,
+        snake: false
     }),
     actions: {
         touch(amount: number, manual?: boolean) {

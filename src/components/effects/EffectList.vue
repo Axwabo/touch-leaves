@@ -4,14 +4,16 @@ import CricketList from "./CricketList.vue";
 import Wind from "./Wind.vue";
 import { storeToRefs } from "pinia";
 import NiceWords from "./NiceWords.vue";
+import SnakeDisplay from "./snake/SnakeDisplay.vue";
 
 const { entities } = useStore();
 
-const { pestRemover, niceWords } = storeToRefs(useStore());
+const { pestRemover, niceWords, snake } = storeToRefs(useStore());
 </script>
 
 <template>
     <Wind v-if="entities.includes('Wind')" />
+    <SnakeDisplay v-if="snake" />
     <NiceWords v-if="niceWords" />
     <CricketList v-if="!pestRemover" />
 </template>

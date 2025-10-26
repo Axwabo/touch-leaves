@@ -82,5 +82,11 @@
         "type": "entity",
         "cost": 1300,
         "entity": "Snail"
+    },
+    {
+        "type": "Snake",
+        "cost": 3200,
+        "description": "The game, +5 🍂/food",
+        "icon": "🐍"
     }
 ]
