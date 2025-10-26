@@ -8,5 +8,11 @@
         "type": "entity",
         "cost": 100,
         "entity": "Squirrel"
+    },
+    {
+        "type": "Speed",
+        "cost": 80,
+        "description": "Shows your 🍂/s",
+        "icon": "⬆"
     }
 ]

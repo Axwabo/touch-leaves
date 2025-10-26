@@ -13,6 +13,9 @@ export default function processUpgrade(definition: UpgradeDefinition | null, sto
 
 function applyUpgrade(definition: UpgradeDefinition, store: Store) {
     switch (definition.type) {
+        case "Speed":
+            store.speed = true;
+            break;
         case "entity":
             store.entities.push(allEntities[definition.entity]);
             break;

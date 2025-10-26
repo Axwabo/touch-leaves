@@ -20,28 +20,23 @@ const { leaves } = storeToRefs(store);
         <template v-if="upgrade">
             <span class="popup-anchor">
                 <span class="popup">
-                    <i>{{ entity ? upgrade.entity : upgrade.type }}</i>
+                    <i>{{ upgrade.type === "entity" ? upgrade.entity : upgrade.type }}</i>
                     <br>
                     {{ upgrade.description }}
                     <br>
                     <span v-if="entity">+{{ entity.leavesPerSecond }} 🍂/s</span>
                 </span>
             </span>
-            <span class="content">
-                <span class="icon">{{ entity && "icon" in entity ? entity.icon : upgrade.type }}</span>
-                <br>
-                <br>
-                {{ upgrade.cost }} 🍂
-            </span>
+            <span class="icon">{{ entity && "icon" in entity ? entity.icon : upgrade.icon ?? upgrade.type }}</span>
+            {{ upgrade.cost }} 🍂
         </template>
     </button>
 </template>
 
 <style scoped>
 .upgrade-card {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr auto;
     border: none;
     background-color: rgba(30, 30, 30, 0.5);
     border-radius: 0.5em;
@@ -52,14 +47,12 @@ const { leaves } = storeToRefs(store);
 
 .upgrade-card[disabled] {
     cursor: not-allowed;
-}
-
-.upgrade-card[disabled] .content {
     opacity: 0.5;
 }
 
 .icon {
     font-size: 4em;
+    margin-bottom: 0.5rem;
 }
 
 .popup-anchor {
@@ -78,6 +71,7 @@ const { leaves } = storeToRefs(store);
     border: 3px solid gray;
     opacity: 0;
     transition: opacity 0.2s;
+    line-height: 1.5;
 }
 
 .upgrade-card:hover .popup {

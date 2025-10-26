@@ -4,7 +4,7 @@ import useStore from "../store.ts";
 import { ref } from "vue";
 import useInterval from "../composables/useInterval.ts";
 
-const { leaves } = storeToRefs(useStore());
+const { leaves, speed } = storeToRefs(useStore());
 
 let previous = 0;
 
@@ -17,12 +17,27 @@ useInterval(() => {
 </script>
 
 <template>
-    <h2 id="leafCount"><span class="zeroes">{{ "0".repeat(8 - (leaves === 0 ? 0 : Math.ceil(Math.log10(leaves)))) }}</span>{{ leaves }}</h2>
-    <span>{{ perSecond }} {{ perSecond === 1 ? "leaf" : "leaves" }} touched per second</span>
+    <div id="leafCount">
+        <h2><span class="zeroes">{{ "0".repeat(8 - (leaves === 0 ? 0 : Math.ceil(Math.log10(leaves)))) }}</span>{{ leaves }}</h2>
+        <span :class="{ speed }">{{ perSecond }} {{ perSecond === 1 ? "leaf" : "leaves" }} touched per second</span>
+    </div>
 </template>
 
 <style scoped>
+#leafCount h2 {
+    text-align: center;
+    margin: 0;
+}
+
+#leafCount > span {
+    visibility: hidden;
+}
+
 .zeroes {
     opacity: 0.7;
+}
+
+#leafCount .speed {
+    visibility: visible;
 }
 </style>

@@ -4,6 +4,7 @@ import upgrades from "../assets/data/upgrades.json";
 interface BaseUpgrade {
     cost: number;
     description: string;
+    icon?: string;
 }
 
 interface EntityUpgrade extends BaseUpgrade {
@@ -11,6 +12,10 @@ interface EntityUpgrade extends BaseUpgrade {
     entity: EntityType;
 }
 
-export type UpgradeDefinition = EntityUpgrade;
+interface TypeUpgrade<T extends string> extends BaseUpgrade {
+    type: T;
+}
+
+export type UpgradeDefinition = EntityUpgrade | TypeUpgrade<"Speed">;
 
 export const allUpgrades = upgrades as UpgradeDefinition[];
