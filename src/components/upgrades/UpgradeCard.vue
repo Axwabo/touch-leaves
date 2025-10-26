@@ -63,6 +63,7 @@ const { leaves } = storeToRefs(store);
 }
 
 .icon {
+    font-family: "Segoe UI Emoji", sans-serif;
     font-size: 4em;
     align-self: end;
 }

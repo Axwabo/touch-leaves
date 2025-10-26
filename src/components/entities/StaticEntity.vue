@@ -13,5 +13,6 @@ const x = computed(() => `${offset}rem`);
 <style scoped>
 .simple-entity {
     translate: calc(v-bind(x) - 50%) -80%;
+    font-family: "Segoe UI Emoji", sans-serif;
 }
 </style>

@@ -21,4 +21,4 @@ export type UpgradeDefinition = EntityUpgrade
     | TypeUpgrade<"Rainbow Leaves">
     | TypeUpgrade<"Music">;
 
-export const allUpgrades = upgrades as UpgradeDefinition[];
+export const allUpgrades = (upgrades as UpgradeDefinition[]).sort((a, b) => a.cost - b.cost);
