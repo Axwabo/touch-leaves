@@ -12,6 +12,7 @@ interface State {
     visibleUpgrades: ShallowReactive<(UpgradeDefinition | null)[]>;
     remainingUpgrades: UpgradeDefinition[];
     speed: boolean;
+    rainbow: boolean;
 }
 
 const maxVisible = 4;
@@ -27,7 +28,8 @@ const store = defineStore("touch-leaves", {
         entities: reactive([]),
         visibleUpgrades: shallowReactive(initialVisibleUpgrades()),
         remainingUpgrades: allUpgrades.slice(4),
-        speed: false
+        speed: false,
+        rainbow: false
     }),
     actions: {
         touch(amount: number, manual?: boolean) {

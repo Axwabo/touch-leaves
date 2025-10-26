@@ -14,5 +14,11 @@
         "cost": 80,
         "description": "Shows your 🍂/s",
         "icon": "⬆"
+    },
+    {
+        "type": "Rainbow Leaves",
+        "cost": 1500,
+        "description": "3 🍂 for every touch",
+        "icon": "🌈"
     }
 ]

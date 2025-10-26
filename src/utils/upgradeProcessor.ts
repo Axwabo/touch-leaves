@@ -5,6 +5,7 @@ export default function processUpgrade(definition: UpgradeDefinition | null, sto
     if (definition == null)
         return;
     applyUpgrade(definition, store);
+    store.leaves -= definition.cost;
     const index = store.visibleUpgrades.indexOf(definition);
     if (index !== -1)
         store.visibleUpgrades[index] = store.remainingUpgrades.shift() || null;
@@ -12,11 +13,14 @@ export default function processUpgrade(definition: UpgradeDefinition | null, sto
 
 function applyUpgrade(definition: UpgradeDefinition, store: Store) {
     switch (definition.type) {
+        case "entity":
+            store.entities.push(definition.entity);
+            break;
         case "Speed":
             store.speed = true;
             break;
-        case "entity":
-            store.entities.push(definition.entity);
+        case "Rainbow Leaves":
+            store.rainbow = true;
             break;
     }
 }
