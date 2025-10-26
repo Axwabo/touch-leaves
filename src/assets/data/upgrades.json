@@ -69,5 +69,11 @@
         "cost": 2500,
         "description": "No more nasty crickets",
         "icon": "🥫"
+    },
+    {
+        "type": "Nice Words",
+        "cost": 2400,
+        "description": "You're doing great!",
+        "icon": "🗣"
     }
 ]

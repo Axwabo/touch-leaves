@@ -2,6 +2,7 @@
     <div id="audioPools">
         <div id="leafSoundContainer"></div>
         <div id="purchaseSoundContainer"></div>
+        <div id="niceSoundContainer"></div>
     </div>
 </template>
 

@@ -37,5 +37,8 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
         case "Pest Remover":
             store.pestRemover = true;
             break;
+        case "Nice Words":
+            store.niceWords = true;
+            break;
     }
 }

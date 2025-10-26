@@ -8,6 +8,7 @@ import type { EntityType } from "./types/entityData.ts";
 interface State {
     leaves: number;
     touchedThisSecond: number;
+    manuallyTouched: number;
     touched: TouchedLeafData[];
     entities: EntityType[];
     visibleUpgrades: UpgradeDefinition[];
@@ -16,8 +17,8 @@ interface State {
     rainbow: boolean;
     music: boolean;
     level: number;
-    crickets: { id: string, deleted: boolean }[];
     pestRemover: boolean;
+    niceWords: boolean;
 }
 
 const maxVisible = 4;
@@ -26,6 +27,7 @@ const store = defineStore("touch-leaves", {
     state: (): State => ({
         leaves: 0,
         touchedThisSecond: 0,
+        manuallyTouched: 0,
         touched: reactive([]),
         entities: reactive([]),
         visibleUpgrades: shallowReactive([ ...allUpgrades.slice(0, maxVisible) ]),
@@ -34,8 +36,8 @@ const store = defineStore("touch-leaves", {
         rainbow: false,
         music: false,
         level: 1,
-        crickets: reactive([]),
-        pestRemover: false
+        pestRemover: false,
+        niceWords: false
     }),
     actions: {
         touch(amount: number, manual?: boolean) {
@@ -47,8 +49,10 @@ const store = defineStore("touch-leaves", {
             this.leaves += amount;
             if (!manual)
                 return;
-            if (amount > 0)
+            if (amount > 0) {
                 playLeafSound();
+                this.manuallyTouched += amount;
+            }
             for (const e of this.touched) {
                 if (!e.completed)
                     continue;
