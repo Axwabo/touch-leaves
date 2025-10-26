@@ -28,7 +28,7 @@ const { leaves } = storeToRefs(store);
                 </span>
             </span>
             <span class="content">
-                <span class="icon">{{ entity && "icon" in entity ? entity.icon : upgrade.icon ?? upgrade.type }}</span>
+                <span class="icon emoji">{{ entity && "icon" in entity ? entity.icon : upgrade.icon ?? upgrade.type }}</span>
                 {{ upgrade.cost }} 🍂
             </span>
         </template>
@@ -63,7 +63,6 @@ const { leaves } = storeToRefs(store);
 }
 
 .icon {
-    font-family: "Segoe UI Emoji", sans-serif;
     font-size: 4em;
     align-self: end;
 }
@@ -85,6 +84,10 @@ const { leaves } = storeToRefs(store);
     opacity: 0;
     transition: opacity 0.2s;
     line-height: 1.5;
+}
+
+.popup i {
+    font-size: 1.25em;
 }
 
 .upgrade-card:hover .popup {

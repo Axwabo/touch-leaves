@@ -6,11 +6,11 @@ import LeafPopupContainer from "./components/LeafPopupContainer.vue";
 import UpgradesPanel from "./components/upgrades/UpgradePanel.vue";
 import EntityList from "./components/entities/EntityList.vue";
 import Music from "./components/Music.vue";
+import AudioPools from "./components/AudioPools.vue";
 </script>
 
 <template>
-    <div id="leafSoundContainer"></div>
-    <div id="purchaseSoundContainer"></div>
+    <AudioPools />
     <LeafPopupContainer />
     <ClickPanel />
     <LeafCount />

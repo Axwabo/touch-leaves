@@ -1,4 +1,9 @@
 {
+    "Ant": {
+        "leavesPerSecond": 2,
+        "icon": "🐜",
+        "y": 3
+    },
     "Rose": {
         "leavesPerSecond": 3,
         "x": 25,
@@ -11,7 +16,7 @@
     },
     "Squirrel": {
         "leavesPerSecond": 10,
-        "x": 20,
+        "y": 5,
         "icon": "🐿"
     }
 }

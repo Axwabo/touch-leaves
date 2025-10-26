@@ -20,6 +20,7 @@ body {
     display: grid;
     place-items: center;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 button {
@@ -37,5 +38,9 @@ button {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 2rem;
+    gap: 5rem;
+}
+
+.emoji {
+    font-family: "Segoe UI Emoji", sans-serif;
 }

@@ -1,13 +1,18 @@
 [
     {
         "type": "entity",
-        "cost": 30,
+        "cost": 40,
         "entity": "Rose"
     },
     {
         "type": "entity",
         "cost": 100,
         "entity": "Sunflower"
+    },
+    {
+        "type": "entity",
+        "cost": 30,
+        "entity": "Ant"
     },
     {
         "type": "Music",
