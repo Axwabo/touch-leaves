@@ -12,8 +12,8 @@ const { leaves } = storeToRefs(store);
 </script>
 
 <template>
-    <button class="upgrade-card" :class="{ disabled: !upgrade || leaves < upgrade.cost }" v-on:click="processUpgrade(upgrade, store)">
-        <span v-if="upgrade" class="content">
+    <button class="upgrade-card" :disabled="!upgrade || leaves < upgrade.cost" v-on:click="processUpgrade(upgrade, store)">
+        <span v-if="upgrade">
             {{ upgrade.type }}
             {{ upgrade.entity }}
             <br>
@@ -32,11 +32,11 @@ const { leaves } = storeToRefs(store);
     cursor: pointer;
 }
 
-.disabled {
+.upgrade-card[disabled] {
     cursor: not-allowed;
 }
 
-.disabled .content {
+.upgrade-card[disabled] span {
     opacity: 0.5;
 }
 </style>
