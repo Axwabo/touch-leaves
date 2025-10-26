@@ -8,10 +8,12 @@ import EntityList from "./components/entities/EntityList.vue";
 import Music from "./components/Music.vue";
 import AudioPools from "./components/AudioPools.vue";
 import Alert from "./components/Alert.vue";
+import Level from "./components/Level.vue";
 </script>
 
 <template>
     <AudioPools />
+    <Level />
     <LeafPopupContainer />
     <ClickPanel />
     <LeafCount />

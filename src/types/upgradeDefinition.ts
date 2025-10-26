@@ -19,6 +19,7 @@ interface TypeUpgrade<T extends string> extends BaseUpgrade {
 export type UpgradeDefinition = EntityUpgrade
     | TypeUpgrade<"Speed">
     | TypeUpgrade<"Rainbow Leaves">
-    | TypeUpgrade<"Music">;
+    | TypeUpgrade<"Music">
+    | TypeUpgrade<"Levéls">;
 
 export const allUpgrades = (upgrades as UpgradeDefinition[]).sort((a, b) => a.cost - b.cost);

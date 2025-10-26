@@ -22,5 +22,8 @@
     "Wind": {
         "leavesPerSecond": 50,
         "effect": "wind"
+    },
+    "Tulip": {
+    
     }
 }

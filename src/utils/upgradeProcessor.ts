@@ -31,5 +31,8 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
         case "Rainbow Leaves":
             store.rainbow = true;
             break;
+        case "Levéls":
+            store.level = 1;
+            break;
     }
 }

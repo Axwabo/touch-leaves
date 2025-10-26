@@ -15,6 +15,11 @@
         "entity": "Ant"
     },
     {
+        "type": "entity",
+        "cost": 90,
+        "entity": "Tulip"
+    },
+    {
         "type": "Music",
         "cost": 50,
         "description": "Break the silence",
@@ -42,5 +47,11 @@
         "cost": 1000,
         "entity": "Wind",
         "icon": "💨"
+    },
+    {
+        "type": "Levéls",
+        "cost": 500,
+        "description": "Level up to get more leaves",
+        "icon": "📈"
     }
 ]

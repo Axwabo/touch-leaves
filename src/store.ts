@@ -15,6 +15,7 @@ interface State {
     speed: boolean;
     rainbow: boolean;
     music: boolean;
+    level: number;
 }
 
 const maxVisible = 4;
@@ -29,7 +30,8 @@ const store = defineStore("touch-leaves", {
         remainingUpgrades: allUpgrades.slice(maxVisible),
         speed: false,
         rainbow: false,
-        music: false
+        music: false,
+        level: 0
     }),
     actions: {
         touch(amount: number, manual?: boolean) {

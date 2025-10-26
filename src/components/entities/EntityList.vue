@@ -2,8 +2,15 @@
 import useStore from "../../store.ts";
 import Entity from "./Entity.vue";
 import Wind from "./Wind.vue";
+import useInterval from "../../composables/useInterval.ts";
 
 const { entities } = useStore();
+
+useInterval(() => setTimeout(spawnWeed, Math.random() * 5000), 10000);
+
+function spawnWeed() {
+
+}
 </script>
 
 <template>
