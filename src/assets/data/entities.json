@@ -10,7 +10,7 @@
         "icon": "🌻"
     },
     "Squirrel": {
-        "leavesPerSecond": 6,
+        "leavesPerSecond": 10,
         "x": 20,
         "icon": "🐿"
     }

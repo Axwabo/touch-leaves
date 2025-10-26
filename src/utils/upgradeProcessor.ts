@@ -1,11 +1,13 @@
 import type { UpgradeDefinition } from "../types/upgradeDefinition.ts";
 import type { Store } from "../store.ts";
+import { playPurchaseSound } from "./sources.ts";
 
 export default function processUpgrade(definition: UpgradeDefinition | null, store: Store) {
     if (definition == null)
         return;
     applyUpgrade(definition, store);
     store.leaves -= definition.cost;
+    playPurchaseSound();
     const index = store.visibleUpgrades.indexOf(definition);
     if (index !== -1)
         store.visibleUpgrades[index] = store.remainingUpgrades.shift() || null;

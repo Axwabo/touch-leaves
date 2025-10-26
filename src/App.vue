@@ -9,6 +9,8 @@ import Music from "./components/Music.vue";
 </script>
 
 <template>
+    <div id="leafSoundContainer"></div>
+    <div id="purchaseSoundContainer"></div>
     <LeafPopupContainer />
     <ClickPanel />
     <LeafCount />

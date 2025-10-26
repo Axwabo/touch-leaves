@@ -7,7 +7,6 @@ const { touched } = useStore();
 
 <template>
     <div id="leafPopupContainer">
-        <div id="leafSoundContainer"></div>
         <LeafPopup v-for="data in touched" :data :key="data.id" />
     </div>
 </template>
