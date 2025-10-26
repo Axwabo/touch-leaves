@@ -11,10 +11,13 @@ const leaves = [ leaf1, leaf2, leaf3, leaf4, leaf5 ];
 function playPooled(src: string, container: HTMLElement | null) {
     if (!container)
         return;
-    const available = Array.from(container.querySelectorAll("audio")).find(e => e.ended && e.src === src);
-    if (available) {
-        available.currentTime = 0;
-        void available.play();
+    const available = Array.from(container.querySelectorAll("audio")).filter(e => e.ended && e.src === src);
+    if (available.length > 50)
+        return;
+    const first = available[0];
+    if (first) {
+        first.currentTime = 0;
+        void first.play();
         return;
     }
     const source = document.createElement("audio");

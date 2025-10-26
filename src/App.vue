@@ -13,9 +13,9 @@ import Level from "./components/Level.vue";
 
 <template>
     <AudioPools />
-    <Level />
     <LeafPopupContainer />
     <ClickPanel />
+    <Level />
     <LeafCount />
     <EntityList />
     <UpgradesPanel />
