@@ -9,7 +9,7 @@ import Music from "./components/Music.vue";
 import AudioPools from "./components/AudioPools.vue";
 import Alert from "./components/Alert.vue";
 import Level from "./components/Level.vue";
-import CricketList from "./components/effects/CricketList.vue";
+import EffectList from "./components/effects/EffectList.vue";
 </script>
 
 <template>
@@ -18,7 +18,7 @@ import CricketList from "./components/effects/CricketList.vue";
     <ClickPanel />
     <Level />
     <LeafCount />
-    <CricketList />
+    <EffectList />
     <EntityList />
     <UpgradesPanel />
     <Music />

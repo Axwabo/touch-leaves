@@ -17,6 +17,7 @@ interface State {
     music: boolean;
     level: number;
     crickets: { id: string, deleted: boolean }[];
+    pestRemover: boolean;
 }
 
 const maxVisible = 4;
@@ -33,7 +34,8 @@ const store = defineStore("touch-leaves", {
         rainbow: false,
         music: false,
         level: 1,
-        crickets: reactive([])
+        crickets: reactive([]),
+        pestRemover: false
     }),
     actions: {
         touch(amount: number, manual?: boolean) {

@@ -63,5 +63,11 @@
         "type": "entity",
         "cost": 1200,
         "entity": "Cherry Blossom"
+    },
+    {
+        "type": "Pest Remover",
+        "cost": 2500,
+        "description": "No more nasty crickets",
+        "icon": "🥫"
     }
 ]

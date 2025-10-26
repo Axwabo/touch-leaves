@@ -20,6 +20,7 @@ export type UpgradeDefinition = EntityUpgrade
     | TypeUpgrade<"Speed">
     | TypeUpgrade<"Rainbow Leaves">
     | TypeUpgrade<"Music">
-    | TypeUpgrade<"Levéls">;
+    | TypeUpgrade<"Levéls">
+    | TypeUpgrade<"Pest Remover">;
 
 export const allUpgrades = (upgrades as UpgradeDefinition[]).sort((a, b) => a.cost - b.cost);

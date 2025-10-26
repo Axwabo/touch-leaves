@@ -34,5 +34,8 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
         case "Levéls":
             store.level = 1;
             break;
+        case "Pest Remover":
+            store.pestRemover = true;
+            break;
     }
 }

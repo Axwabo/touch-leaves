@@ -8,8 +8,17 @@ const keyframes = [
     { opacity: 0, scale: 0, translate: "10rem 2rem" }
 ];
 
-export default function useWind(ref: Ref<HTMLElement | null>) {
-    useInterval(() => ref.value?.animate(keyframes, { duration: 1000, delay: Math.random() * 1000 }), Math.random() * 3000 + 2000);
+export default function useWind(element: Ref<HTMLElement | null>, top: Ref<string>, left: Ref<string>) {
+    useInterval(() => {
+        randomize();
+        element.value?.animate(keyframes, { duration: 1000, delay: Math.random() * 1000 });
+    }, Math.random() * 3000 + 2000);
     if (Math.random() < 0.8)
-        onMounted(() => ref.value?.animate(keyframes, { duration: 1000, delay: Math.random() * 2000 }));
+        onMounted(() => element.value?.animate(keyframes, { duration: 1000, delay: Math.random() * 2000 }));
+    randomize();
+
+    function randomize() {
+        top.value = `${Math.random() * 100}vh`;
+        left.value = `${Math.random() * 100}vw`;
+    }
 }
