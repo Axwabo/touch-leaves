@@ -18,14 +18,14 @@ function playPooled(src: string, container: HTMLElement | null) {
     if (!container)
         return;
     const available = Array.from(container.querySelectorAll("audio")).filter(e => e.ended && e.src === src);
+    if (container.querySelectorAll("audio").length > 30)
+        return;
     const first = available[0];
     if (first) {
         first.currentTime = 0;
         void first.play();
         return;
     }
-    if (available.length > 30)
-        return;
     const source = document.createElement("audio");
     source.autoplay = true;
     source.src = src;
