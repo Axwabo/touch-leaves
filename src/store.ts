@@ -55,7 +55,7 @@ const store = defineStore("touch-leaves", {
         snake: false,
         mysteryBoxes: false,
         bouncingLogos: reactive([]),
-        stage: "boss",
+        stage: "leaves",
         bossHealth: 500,
         lives: 1
     }),

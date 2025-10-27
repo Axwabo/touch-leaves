@@ -19,7 +19,7 @@ const tree = useTemplateRef("tree");
         <Tree :leaf="leaf?.leaf ?? null" ref="tree" />
         <hr>
     </div>
-    <MainLeaf v-on:dragging="hidden = true" ref="leaf" />
+    <MainLeaf v-on:dragging="hidden = true; tree?.attack()" ref="leaf" />
 </template>
 
 <style scoped>

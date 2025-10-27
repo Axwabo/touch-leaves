@@ -52,18 +52,22 @@ useAnimationFrame(() => {
     collided = !collision;
 });
 
-useInterval(performAttack, 4000);
-
 onMounted(performAttack);
 
 function performAttack() {
     setTimeout(() => {
         const random = Math.random();
-        return attack.value = random < 0.4 ? null : random < 0.6 ? "pinecone" : "branches";
+        return attack.value = random < 0.4 ? null : "pinecone";
     }, Math.random() * 1000 + 1000);
 }
 
-defineExpose({ critical });
+defineExpose({
+    critical,
+    attack: function() {
+        useInterval(performAttack, 4000);
+        performAttack();
+    }
+});
 </script>
 
 <template>
