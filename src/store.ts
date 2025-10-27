@@ -56,7 +56,7 @@ const store = defineStore("touch-leaves", {
         mysteryBoxes: false,
         bouncingLogos: reactive([]),
         stage: "boss",
-        bossHealth: 500,
+        bossHealth: 100,
         lives: 1
     }),
     actions: {

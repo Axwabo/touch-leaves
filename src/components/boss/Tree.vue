@@ -3,6 +3,8 @@ import useStore from "../../store.ts";
 import { storeToRefs } from "pinia";
 import { reactive, ref, useTemplateRef } from "vue";
 import Branch from "./Branch.vue";
+import useAnimationFrame from "../../composables/useAnimationFrame.ts";
+import { checkCollision } from "../../utils/collision.ts";
 
 const { leaf } = defineProps<{ leaf: HTMLSpanElement | null; }>();
 
@@ -12,20 +14,41 @@ type Attack = "pinecone" | "branches" | "lasers";
 
 const attack = ref<Attack | null>("pinecone");
 
+const critical = ref(false);
+
 const tree = useTemplateRef("tree");
+
+let collided = false;
 
 const leftBranches = reactive(new Array(5).fill(true));
 const rightBranches = reactive(new Array(5).fill(true));
 
-function hit(branches: boolean[], index: number) {
-    if (tree.value?.getAnimations().some(e => e.playState === "running"))
-        return;
-    bossHealth.value -= 30;
-    branches[index] = false;
+function damage(amount: number) {
+    if (bossHealth.value <= 0 || tree.value?.getAnimations().some(e => e.playState === "running"))
+        return false;
+    bossHealth.value -= amount;
+    critical.value = bossHealth.value <= 200;
     tree.value?.animate([ { filter: "sepia(0.6) hue-rotate(-100deg)" }, { filter: "none" } ], { duration: 500 });
     if (bossHealth.value <= 0)
-        stage.value = "completed";
+        setTimeout(() => stage.value = "completed", 2000);
+    return true;
 }
+
+function hit(branches: boolean[], index: number) {
+    if (damage(30))
+        branches[index] = false;
+}
+
+useAnimationFrame(() => {
+    if (!critical.value || !tree.value || !leaf)
+        return;
+    const collision = checkCollision(tree.value, leaf);
+    if (!collided && collision)
+        damage(10);
+    collided = !collision;
+});
+
+defineExpose({ critical });
 </script>
 
 <template>

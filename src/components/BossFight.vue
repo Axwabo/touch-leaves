@@ -3,22 +3,20 @@ import MainLeaf from "./boss/MainLeaf.vue";
 import BossBar from "./boss/BossBar.vue";
 import { ref, useTemplateRef } from "vue";
 import Tree from "./boss/Tree.vue";
-import { storeToRefs } from "pinia";
-import useStore from "../store.ts";
 
 const hidden = ref(false);
 
 const leaf = useTemplateRef("leaf");
 
-const { bossHealth } = storeToRefs(useStore());
+const tree = useTemplateRef("tree");
 </script>
 
 <template>
     <BossBar />
-    <h1 :class="{ hidden: hidden && bossHealth > 200 }">{{ bossHealth <= 200 ? "Keep attacking!" : "Drag the leaf and avoid the tree's attacks! Break the branches!" }}</h1>
+    <h1 :class="{ hidden: hidden && !tree?.critical }">{{ tree?.critical ? "Keep attacking!" : "Drag the leaf and avoid the tree's attacks! Break the branches!" }}</h1>
     <div id="space"></div>
     <div id="bossFight">
-        <Tree :leaf="leaf?.leaf ?? null" />
+        <Tree :leaf="leaf?.leaf ?? null" ref="tree" />
         <hr>
     </div>
     <MainLeaf v-on:dragging="hidden = true" ref="leaf" />
