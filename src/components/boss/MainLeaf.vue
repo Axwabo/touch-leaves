@@ -3,6 +3,8 @@ import { useTemplateRef } from "vue";
 import useMousePosition from "../../composables/useMousePosition.ts";
 import useWindowEvent from "../../composables/useWindowEvent.ts";
 
+const emit = defineEmits([ "dragging" ]);
+
 let dragging = false;
 
 let offsetX = 0;
@@ -24,6 +26,7 @@ function mouseDown(ev: MouseEvent) {
     offsetX = ev.offsetX;
     offsetY = ev.offsetY;
     dragging = true;
+    emit("dragging");
 }
 
 function touchStart(ev: TouchEvent) {
@@ -32,7 +35,11 @@ function touchStart(ev: TouchEvent) {
     const touch = ev.touches[0]!;
     offsetX = leaf.value ? touch.clientX - leaf.value.getBoundingClientRect().right : 0;
     offsetY = leaf.value ? touch.clientY - leaf.value.getBoundingClientRect().top : 0;
+    dragging = true;
+    emit("dragging");
 }
+
+defineExpose({ leaf });
 </script>
 
 <template>
@@ -43,8 +50,10 @@ function touchStart(ev: TouchEvent) {
 #mainLeaf {
     position: absolute;
     font-size: 5rem;
+    height: max-content;
     cursor: grab;
     user-select: none;
+    bottom: 5rem;
 }
 
 #mainLeaf:active {

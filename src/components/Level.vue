@@ -42,6 +42,7 @@ watch(level, () => base.value = leaves.value);
     grid-template-columns: 10rem 15rem;
     padding: 0.5em;
     background-color: rgba(30, 30, 30, 0.3);
+    accent-color: greenyellow;
 }
 
 .left {
