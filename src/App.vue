@@ -8,6 +8,7 @@ import useStore from "./store.ts";
 import Credits from "./components/Credits.vue";
 import BossFight from "./components/BossFight.vue";
 import FullScreenButton from "./FullScreenButton.vue";
+import Died from "./components/Died.vue";
 
 const { stage } = storeToRefs(useStore());
 </script>
@@ -16,6 +17,7 @@ const { stage } = storeToRefs(useStore());
     <AudioPools />
     <Game v-if="stage === 'leaves'" />
     <BossFight v-else-if="stage === 'boss'" />
+    <Died v-else-if="stage === 'dead'" />
     <Credits v-else-if="stage === 'completed'" />
     <FullScreenButton />
     <Music />

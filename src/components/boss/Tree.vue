@@ -1,20 +1,24 @@
 <script setup lang="ts">
 import useStore from "../../store.ts";
 import { storeToRefs } from "pinia";
-import { reactive, ref, useTemplateRef } from "vue";
+import { computed, onMounted, reactive, ref, useTemplateRef } from "vue";
 import Branch from "./Branch.vue";
 import useAnimationFrame from "../../composables/useAnimationFrame.ts";
 import { checkCollision } from "../../utils/collision.ts";
+import Pinecone from "./Pinecone.vue";
+import useInterval from "../../composables/useInterval.ts";
 
 const { leaf } = defineProps<{ leaf: HTMLSpanElement | null; }>();
 
 const { bossHealth, stage } = storeToRefs(useStore());
 
-type Attack = "pinecone" | "branches" | "lasers";
+type Attack = "pinecone";
 
-const attack = ref<Attack | null>("pinecone");
+const attack = ref<Attack | null>(null);
 
 const critical = ref(false);
+
+const vulnerable = computed(() => attack.value === null);
 
 const tree = useTemplateRef("tree");
 
@@ -48,19 +52,31 @@ useAnimationFrame(() => {
     collided = !collision;
 });
 
+useInterval(performAttack, 4000);
+
+onMounted(performAttack);
+
+function performAttack() {
+    setTimeout(() => {
+        const random = Math.random();
+        return attack.value = random < 0.4 ? null : random < 0.6 ? "pinecone" : "branches";
+    }, Math.random() * 1000 + 1000);
+}
+
 defineExpose({ critical });
 </script>
 
 <template>
-    <div id="tree" :class="[attack ?? '', bossHealth === 0 ? 'dead' : '']" ref="tree">
+    <div id="tree" :class="[attack ?? '']" ref="tree">
         <div id="trunk">
-            <span id="face">{{ bossHealth === 0 ? "<" : ">" }}:(</span>
-            <Branch v-for="(alive, index) in leftBranches" :class="{ alive }" :index :leaf
+            <span id="face">{{ bossHealth <= 0 ? "<" : ">" }}:(</span>
+            <Branch v-for="(alive, index) in leftBranches" :class="{ alive }" :index :leaf :vulnerable
                     v-on:hit="alive && hit(leftBranches, index)" />
-            <Branch v-for="(alive, index) in rightBranches" :class="{ right: true, alive }" :index :leaf
+            <Branch v-for="(alive, index) in rightBranches" :class="{ right: true, alive }" :index :leaf :vulnerable
                     v-on:hit="alive && hit(rightBranches, index)" />
         </div>
     </div>
+    <Pinecone v-if="attack === 'pinecone'" :leaf />
 </template>
 
 <style scoped>

@@ -26,7 +26,7 @@ interface State {
     snake: boolean;
     mysteryBoxes: boolean;
     bouncingLogos: BouncyUpgrade<any>[];
-    stage: "leaves" | "boss" | "completed";
+    stage: "leaves" | "boss" | "completed" | "dead";
     bossHealth: number;
     lives: number;
 }
@@ -56,7 +56,7 @@ const store = defineStore("touch-leaves", {
         mysteryBoxes: false,
         bouncingLogos: reactive([]),
         stage: "boss",
-        bossHealth: 100,
+        bossHealth: 500,
         lives: 1
     }),
     actions: {

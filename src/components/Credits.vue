@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import useStore from "../store.ts";
+import Restart from "./Restart.vue";
 
 const { start, leaves, totalTouched, clicks } = useStore();
 
@@ -31,10 +32,7 @@ const elapsed = new Intl.DateTimeFormat(undefined, {
         <br>
         Final leaf count: <span class="stat">{{ leaves }}</span>
     </h2>
-    <div class="restart">→
-        <button v-on:click="useStore().$reset()">RESTART</button>
-        ◄
-    </div>
+    <Restart />
 </template>
 
 <style scoped>
@@ -49,13 +47,6 @@ div {
 
 .stat {
     color: #d4ff95;
-}
-
-.restart {
-    font-size: 3rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
 }
 
 .restart button {

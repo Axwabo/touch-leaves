@@ -12,7 +12,7 @@ const box = useTemplateRef("box");
 const top = computed(() => `${index * 15 + 10}%`);
 
 useAnimationFrame(() => {
-    if (leaf && box.value && checkCollision(box.value, leaf))
+    if (vulnerable && leaf && box.value && checkCollision(box.value, leaf))
         emit("hit");
 });
 </script>
