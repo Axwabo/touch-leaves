@@ -86,7 +86,7 @@
     {
         "type": "Snake",
         "cost": 3200,
-        "description": "The game, +5 🍂/food",
+        "description": "The game, +10 🍂/food",
         "icon": "🐍"
     }
 ]

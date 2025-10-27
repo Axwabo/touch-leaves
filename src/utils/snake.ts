@@ -1,4 +1,5 @@
 import { item } from "./random.ts";
+import { reactive } from "vue";
 
 export const gridSize = 16;
 
@@ -43,7 +44,20 @@ function randomizeFood(engine: SnakeEngine) {
     engine.foodY = Math.floor((target) / gridSize) + 1;
 }
 
-export function defaultHead(): SnakeSegment {
+function orientX(orientation: Orientation) {
+    return Math.round(Math.cos(orientation / 180 * Math.PI));
+}
+
+function orientY(orientation: Orientation) {
+    return Math.round(Math.sin(orientation / 180 * Math.PI));
+}
+
+function turn(orientation: Orientation, engine: SnakeEngine) {
+    if (orientation !== (engine.head.orientation + 180) % 360)
+        engine.nextMove = orientation;
+}
+
+function defaultHead(): SnakeSegment {
     return { x: gridSize / 2, y: gridSize / 2, type: "head", orientation: 0 };
 }
 
@@ -59,15 +73,7 @@ export function restart(engine: SnakeEngine) {
     randomizeFood(engine);
 }
 
-function orientX(orientation: Orientation) {
-    return Math.round(Math.cos(orientation / 180 * Math.PI));
-}
-
-function orientY(orientation: Orientation) {
-    return Math.round(Math.sin(orientation / 180 * Math.PI));
-}
-
-export function step(engine: SnakeEngine) {
+export function step(engine: SnakeEngine, eatCallback: () => void) {
     const x = engine.head.x + orientX(engine.nextMove);
     const y = engine.head.y - orientY(engine.nextMove);
     const free = getFreeCells(engine);
@@ -93,6 +99,35 @@ export function step(engine: SnakeEngine) {
     engine.head.x = x;
     engine.head.y = y;
     engine.head.orientation = engine.nextMove;
-    if (isFood)
-        randomizeFood(engine);
+    if (!isFood)
+        return;
+    randomizeFood(engine);
+    eatCallback();
+}
+
+export function handleKey(key: string, engine: SnakeEngine) {
+    switch (key) {
+        case "ArrowRight":
+        case "D":
+            turn(0, engine);
+            break;
+        case "ArrowUp":
+        case "W":
+            turn(90, engine);
+            break;
+        case "ArrowLeft":
+        case "A":
+            turn(180, engine);
+            break;
+        case "ArrowDown":
+        case "S":
+            turn(270, engine);
+            break;
+    }
+}
+
+export function createSnakeEngine() {
+    const engine: SnakeEngine = reactive({ foodX: 1, foodY: 1, snake: [], head: defaultHead(), nextMove: 0 });
+    restart(engine);
+    return engine;
 }
