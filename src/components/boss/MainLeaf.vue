@@ -49,11 +49,13 @@ defineExpose({ leaf });
 <style scoped>
 #mainLeaf {
     position: absolute;
-    font-size: 5rem;
+    font-size: 2rem;
     height: max-content;
     cursor: grab;
     user-select: none;
-    bottom: 5rem;
+    bottom: 3rem;
+    background-color: rgba(50, 50, 50, 0.5);
+    border-radius: 1rem;
 }
 
 #mainLeaf:active {
