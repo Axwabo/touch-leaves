@@ -34,6 +34,7 @@ export type UpgradeDefinition = EntityUpgrade
     | MultiplierUpgrade<"Nice Words">
     | TypeUpgrade<"Snake">
     | BouncyUpgrade<"CD">
-    | BouncyUpgrade<"DVD">;
+    | BouncyUpgrade<"DVD">
+    | TypeUpgrade<"Computer">;
 
 export const allUpgrades = (upgrades as UpgradeDefinition[]).sort((a, b) => a.cost - b.cost);

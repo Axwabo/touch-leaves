@@ -49,5 +49,8 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
         case "DVD":
             store.bouncingLogos.push(definition);
             break;
+        case "Computer":
+            store.stage = "boss";
+            break;
     }
 }

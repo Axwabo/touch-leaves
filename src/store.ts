@@ -9,7 +9,10 @@ interface State {
     leaves: number;
     touchedThisSecond: number;
     manuallyTouched: number;
+    totalTouched: number;
+    clicks: number;
     markiplier: number;
+    start: number;
     touched: TouchedLeafData[];
     entities: EntityType[];
     visibleUpgrades: UpgradeDefinition[];
@@ -21,7 +24,9 @@ interface State {
     pestRemover: boolean;
     niceWords: boolean;
     snake: boolean;
+    mysteryBoxes: boolean;
     bouncingLogos: BouncyUpgrade<any>[];
+    stage: "leaves" | "boss" | "completed";
 }
 
 const maxVisible = 4;
@@ -31,7 +36,10 @@ const store = defineStore("touch-leaves", {
         leaves: 0,
         touchedThisSecond: 0,
         manuallyTouched: 0,
+        totalTouched: 0,
+        clicks: 0,
         markiplier: 1,
+        start: 0,
         touched: reactive([]),
         entities: reactive([]),
         visibleUpgrades: shallowReactive([ ...allUpgrades.slice(0, maxVisible) ]),
@@ -39,19 +47,24 @@ const store = defineStore("touch-leaves", {
         speed: false,
         rainbow: false,
         music: false,
-        level: 1,
+        level: 0,
         pestRemover: false,
         niceWords: false,
         snake: false,
-        bouncingLogos: reactive([])
+        mysteryBoxes: false,
+        bouncingLogos: reactive([]),
+        stage: "leaves"
     }),
     actions: {
         touch(amount: number, manual?: boolean) {
             amount = Math.floor(amount);
+            this.start ||= Date.now();
             if (amount === 0)
                 return;
-            if (amount > 0)
+            if (amount > 0) {
                 this.touchedThisSecond += amount;
+                this.totalTouched += amount;
+            }
             this.leaves += amount;
             if (!manual)
                 return;

@@ -7,7 +7,7 @@
     },
     {
         "type": "entity",
-        "cost": 400,
+        "cost": 300,
         "entity": "Sunflower",
         "description": "More decoration"
     },
@@ -100,5 +100,11 @@
         "cost": 4200,
         "leavesPerBounce": 10,
         "icon": "📀"
+    },
+    {
+        "type": "Computer",
+        "cost": 100000,
+        "icon": "💻",
+        "description": "Is it over..?"
     }
 ]
