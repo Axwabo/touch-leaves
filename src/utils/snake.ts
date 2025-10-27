@@ -50,7 +50,10 @@ export function defaultHead(): SnakeSegment {
 export function restart(engine: SnakeEngine) {
     engine.nextMove = 0;
     engine.head = defaultHead();
-    engine.snake = [ { x: gridSize / 2 - 1, y: gridSize / 2, type: "tail", orientation: 0 } ];
+    engine.snake = [
+        { x: gridSize / 2 - 2, y: gridSize / 2, type: "tail", orientation: 0 },
+        { x: gridSize / 2 - 1, y: gridSize / 2, type: "body", orientation: 0 }
+    ];
     randomizeFood(engine);
 }
 
@@ -71,19 +74,19 @@ export function step(engine: SnakeEngine) {
         return;
     }
     const isFood = engine.foodX === x && engine.foodY === y;
-    const tail = engine.snake[engine.snake.length - 1]!;
+    const tail = engine.snake[0]!;
     if (isFood) {
         tail.type = "body";
         engine.snake.unshift({ x: tail.x, y: tail.y, type: "tail", orientation: tail.orientation });
     }
     for (let i = 0; i < engine.snake.length; i++) {
-        const previous = engine.snake[i + 1] ?? engine.head;
+        const next = engine.snake[i + 1] ?? engine.head;
         const segment = engine.snake[i]!;
         if (isFood && segment.type === "tail")
             continue;
-        segment.x = previous.x;
-        segment.y = previous.y;
-        segment.orientation = previous.orientation;
+        segment.x = next.x;
+        segment.y = next.y;
+        segment.orientation = next.orientation;
     }
     engine.head.x = x;
     engine.head.y = y;
