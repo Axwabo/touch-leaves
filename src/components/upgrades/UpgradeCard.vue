@@ -84,6 +84,7 @@ const { leaves } = storeToRefs(store);
     padding: 1em;
     background-color: #323232;
     border: 3px solid gray;
+    border-radius: 0.5rem;
     opacity: 0;
     transition: opacity 0.2s;
     line-height: 1.5;
