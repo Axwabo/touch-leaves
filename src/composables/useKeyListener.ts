@@ -1,7 +1,6 @@
-import { onMounted, onUnmounted } from "vue";
+import useWindowEvent from "./useWindowEvent.ts";
 
 export default function useKeyListener(callback: (key: string) => void) {
     const listener = (ev: KeyboardEvent) => callback(ev.key);
-    onMounted(() => window.addEventListener("keydown", listener));
-    onUnmounted(() => window.removeEventListener("keydown", listener));
+    useWindowEvent("keydown", listener);
 }
