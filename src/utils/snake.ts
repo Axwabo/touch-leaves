@@ -1,6 +1,6 @@
 import { item } from "./random.ts";
 
-export const gridSize = 20;
+export const gridSize = 16;
 
 export type Orientation = 0 | 90 | 180 | 270;
 

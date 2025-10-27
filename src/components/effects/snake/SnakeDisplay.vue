@@ -46,8 +46,8 @@ function turn(orientation: Orientation) {
 <template>
     <div id="snake">
         <span id="food">🍎</span>
-        <SnakeSegmentRenderer :segment="engine.head" />
-        <SnakeSegmentRenderer v-for="segment in engine.snake" :segment />
+        <SnakeSegmentRenderer :segment="engine.head" :next="null" />
+        <SnakeSegmentRenderer v-for="(segment, index) in engine.snake" :segment :next="engine.snake[index + 1] ?? engine.head" />
     </div>
 </template>
 
@@ -58,8 +58,8 @@ function turn(orientation: Orientation) {
     pointer-events: none;
     display: grid;
     place-items: center;
-    grid-template-rows: repeat(v-bind(cells), 1rem);
-    grid-template-columns: repeat(v-bind(cells), 1rem);
+    grid-template-rows: repeat(v-bind(cells), 2rem);
+    grid-template-columns: repeat(v-bind(cells), 2rem);
     background-color: #ffcfbd;
 }
 
