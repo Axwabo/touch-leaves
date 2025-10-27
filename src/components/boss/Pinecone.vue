@@ -20,7 +20,7 @@ useAnimationFrame(() => {
     if (!leaf || !pinecone.value || !checkCollision(pinecone.value, leaf))
         return;
     if (--lives.value === 0)
-        stage.value = 0;
+        stage.value = "dead";
 });
 </script>
 
