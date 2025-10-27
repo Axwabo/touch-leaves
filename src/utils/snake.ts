@@ -8,20 +8,20 @@ export interface SnakeEngine {
     snake: SnakeSegment[];
     foodX: number;
     foodY: number;
-    headX: number;
-    headY: number;
-    moving: Orientation;
+    head: SnakeSegment;
+    nextMove: Orientation;
 }
 
 export interface SnakeSegment {
     x: number;
     y: number;
     orientation: Orientation;
-    type: "body" | "tail";
+    type: "head" | "body" | "tail";
 }
 
 function getFreeCells(engine: SnakeEngine) {
     const freeCells: boolean[] = new Array(gridSize * gridSize).fill(true);
+    freeCells[index(engine.head.x, engine.head.y)] = false;
     for (const segment of engine.snake)
         freeCells[index(segment.x, segment.y)] = false;
     return freeCells;
@@ -43,37 +43,51 @@ function randomizeFood(engine: SnakeEngine) {
     engine.foodY = Math.floor(target / gridSize);
 }
 
+export function defaultHead(): SnakeSegment {
+    return { x: gridSize / 2, y: gridSize / 2, type: "head", orientation: 0 };
+}
+
 export function restart(engine: SnakeEngine) {
-    engine.moving = 90;
-    engine.headX = gridSize / 2;
-    engine.headY = gridSize / 2;
-    engine.snake = [ { x: gridSize / 2 - 1, y: gridSize / 2, type: "tail", orientation: 90 } ];
+    engine.nextMove = 0;
+    engine.head = defaultHead();
+    engine.snake = [ { x: gridSize / 2 - 1, y: gridSize / 2, type: "tail", orientation: 0 } ];
     randomizeFood(engine);
 }
 
+function orientX(orientation: Orientation) {
+    return Math.round(Math.cos(orientation / 180 * Math.PI));
+}
+
+function orientY(orientation: Orientation) {
+    return Math.round(Math.sin(orientation / 180 * Math.PI));
+}
+
 export function step(engine: SnakeEngine) {
-    const x = engine.headX + Math.round(Math.cos(engine.moving));
-    const y = engine.headY + Math.round(Math.sin(engine.moving));
+    const x = engine.head.x + orientX(engine.nextMove);
+    const y = engine.head.y - orientY(engine.nextMove);
     const free = getFreeCells(engine);
     if (x < 1 || y < 1 || x > gridSize || y > gridSize || !free[index(x, y)]) {
         restart(engine);
         return;
     }
     const isFood = engine.foodX === x && engine.foodY === y;
-    engine.headX = x;
-    engine.headY = y;
     const tail = engine.snake[engine.snake.length - 1]!;
-    if (isFood)
-        engine.snake.unshift({ x: tail.x, y: tail.y, type: "body", orientation: tail.orientation });
-    for (let i = engine.snake.length - 1; i >= 0; i--) {
-        const previousOrientation = i === 0 ? engine.moving : engine.snake[i - 1]!.orientation;
-        const segment = engine.snake[i]!;
-        if (!isFood || segment.type !== "tail") {
-            segment.x += Math.round(Math.cos(segment.orientation));
-            segment.y += Math.round(Math.sin(segment.orientation));
-        }
-        segment.orientation = previousOrientation;
+    if (isFood) {
+        tail.type = "body";
+        engine.snake.unshift({ x: tail.x, y: tail.y, type: "tail", orientation: tail.orientation });
     }
+    for (let i = 0; i < engine.snake.length; i++) {
+        const previous = engine.snake[i + 1] ?? engine.head;
+        const segment = engine.snake[i]!;
+        if (isFood && segment.type === "tail")
+            continue;
+        segment.x = previous.x;
+        segment.y = previous.y;
+        segment.orientation = previous.orientation;
+    }
+    engine.head.x = x;
+    engine.head.y = y;
+    engine.head.orientation = engine.nextMove;
     if (isFood)
         randomizeFood(engine);
 }

@@ -42,5 +42,8 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
             store.niceWords = true;
             store.markiplier *= definition.Markiplier;
             break;
+        case "Snake":
+            store.snake = true;
+            break;
     }
 }
