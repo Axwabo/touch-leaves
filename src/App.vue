@@ -6,6 +6,8 @@ import Game from "./components/Game.vue";
 import { storeToRefs } from "pinia";
 import useStore from "./store.ts";
 import Credits from "./components/Credits.vue";
+import BossFight from "./components/BossFight.vue";
+import FullScreenButton from "./FullScreenButton.vue";
 
 const { stage } = storeToRefs(useStore());
 </script>
@@ -13,7 +15,9 @@ const { stage } = storeToRefs(useStore());
 <template>
     <AudioPools />
     <Game v-if="stage === 'leaves'" />
-    <Credits v-else-if="stage === 'boss'" />
+    <BossFight v-else-if="stage === 'boss'" />
+    <Credits v-else-if="stage === 'completed'" />
+    <FullScreenButton />
     <Music />
     <PWABadge />
 </template>
