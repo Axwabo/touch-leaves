@@ -5,8 +5,9 @@ import Wind from "./Wind.vue";
 import { storeToRefs } from "pinia";
 import NiceWords from "./NiceWords.vue";
 import SnakeDisplay from "./snake/SnakeDisplay.vue";
+import BouncingLogo from "./BouncingLogo.vue";
 
-const { entities } = useStore();
+const { entities, bouncingLogos } = useStore();
 
 const { pestRemover, niceWords, snake } = storeToRefs(useStore());
 </script>
@@ -15,5 +16,6 @@ const { pestRemover, niceWords, snake } = storeToRefs(useStore());
     <Wind v-if="entities.includes('Wind')" />
     <SnakeDisplay v-if="snake" />
     <NiceWords v-if="niceWords" />
+    <BouncingLogo v-for="logo in bouncingLogos" :icon="logo.icon" :amount="logo.leavesPerBounce" />
     <CricketList v-if="!pestRemover" />
 </template>

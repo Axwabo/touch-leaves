@@ -27,6 +27,7 @@ const { leaves } = storeToRefs(store);
                     <br>
                     <span v-if="entity">+{{ entity.leavesPerSecond }} 🍂/s</span>
                     <span v-else-if="'Markiplier' in upgrade">x{{ upgrade.Markiplier }} 🍂/touch</span>
+                    <span v-else-if="'leavesPerBounce' in upgrade">+{{ upgrade.leavesPerBounce }} 🍂/bounce</span>
                 </span>
             </span>
             <span class="content">

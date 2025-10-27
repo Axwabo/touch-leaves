@@ -20,6 +20,11 @@ interface MultiplierUpgrade<T extends string> extends TypeUpgrade<T> {
     Markiplier: number;
 }
 
+export interface BouncyUpgrade<T extends string> extends TypeUpgrade<T> {
+    leavesPerBounce: number;
+    icon: string;
+}
+
 export type UpgradeDefinition = EntityUpgrade
     | TypeUpgrade<"Speed">
     | TypeUpgrade<"Music">
@@ -27,6 +32,8 @@ export type UpgradeDefinition = EntityUpgrade
     | TypeUpgrade<"Pest Remover">
     | MultiplierUpgrade<"Rainbow Leaves">
     | MultiplierUpgrade<"Nice Words">
-    | TypeUpgrade<"Snake">;
+    | TypeUpgrade<"Snake">
+    | BouncyUpgrade<"CD">
+    | BouncyUpgrade<"DVD">;
 
 export const allUpgrades = (upgrades as UpgradeDefinition[]).sort((a, b) => a.cost - b.cost);

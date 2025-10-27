@@ -7,7 +7,7 @@
     },
     {
         "type": "entity",
-        "cost": 100,
+        "cost": 400,
         "entity": "Sunflower",
         "description": "More decoration"
     },
@@ -19,13 +19,13 @@
     },
     {
         "type": "entity",
-        "cost": 90,
+        "cost": 1200,
         "entity": "Tulip",
         "description": "More flowers"
     },
     {
         "type": "Music",
-        "cost": 50,
+        "cost": 100,
         "description": "Break the silence",
         "icon": "🎶"
     },
@@ -44,7 +44,7 @@
     },
     {
         "type": "entity",
-        "cost": 500,
+        "cost": 2200,
         "entity": "Squirrel",
         "description": "Throws some leaves as it digs"
     },
@@ -56,13 +56,13 @@
     },
     {
         "type": "Levéls",
-        "cost": 2000,
+        "cost": 1000,
         "description": "Level up to get more leaves",
         "icon": "📈"
     },
     {
         "type": "entity",
-        "cost": 1200,
+        "cost": 4000,
         "entity": "Cherry Blossom"
     },
     {
@@ -80,13 +80,25 @@
     },
     {
         "type": "entity",
-        "cost": 1300,
+        "cost": 1400,
         "entity": "Snail"
     },
     {
         "type": "Snake",
-        "cost": 3200,
+        "cost": 1100,
         "description": "The game, +10 🍂/food",
         "icon": "🐍"
+    },
+    {
+        "type": "CD",
+        "cost": 3500,
+        "leavesPerBounce": 5,
+        "icon": "💿"
+    },
+    {
+        "type": "DVD",
+        "cost": 4200,
+        "leavesPerBounce": 10,
+        "icon": "📀"
     }
 ]

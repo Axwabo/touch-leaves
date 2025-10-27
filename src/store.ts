@@ -2,7 +2,7 @@ import { defineStore, type Store as PiniaStore, type StoreDefinition } from "pin
 import type TouchedLeafData from "./types/touchedLeafData.ts";
 import { reactive, shallowReactive } from "vue";
 import { playLeafSound } from "./utils/sources.ts";
-import { allUpgrades, type UpgradeDefinition } from "./types/upgradeDefinition.ts";
+import { allUpgrades, type BouncyUpgrade, type UpgradeDefinition } from "./types/upgradeDefinition.ts";
 import type { EntityType } from "./types/entityData.ts";
 
 interface State {
@@ -21,6 +21,7 @@ interface State {
     pestRemover: boolean;
     niceWords: boolean;
     snake: boolean;
+    bouncingLogos: BouncyUpgrade<any>[];
 }
 
 const maxVisible = 4;
@@ -41,7 +42,8 @@ const store = defineStore("touch-leaves", {
         level: 1,
         pestRemover: false,
         niceWords: false,
-        snake: false
+        snake: false,
+        bouncingLogos: reactive([])
     }),
     actions: {
         touch(amount: number, manual?: boolean) {

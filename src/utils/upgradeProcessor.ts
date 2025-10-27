@@ -45,5 +45,9 @@ function applyUpgrade(definition: UpgradeDefinition, store: Store) {
         case "Snake":
             store.snake = true;
             break;
+        case "CD":
+        case "DVD":
+            store.bouncingLogos.push(definition);
+            break;
     }
 }
