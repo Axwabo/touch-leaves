@@ -7,14 +7,14 @@ import SnakeSegmentRenderer from "./SnakeSegmentRenderer.vue";
 
 const cells = gridSize;
 
-const engine: SnakeEngine = reactive({ foodX: 0, foodY: 0, snake: [], head: defaultHead(), nextMove: 0 });
+const engine: SnakeEngine = reactive({ foodX: 1, foodY: 1, snake: [], head: defaultHead(), nextMove: 0 });
 
 restart(engine);
 
 const foodX = computed(() => engine.foodX);
 const foodY = computed(() => engine.foodY);
 
-useInterval(() => step(engine), 750);
+useInterval(() => step(engine), 500);
 
 useKeyListener(key => {
     switch (key) {
@@ -54,6 +54,8 @@ function turn(orientation: Orientation) {
 <style scoped>
 #snake {
     position: absolute;
+    top: 0;
+    right: 8rem;
     border: 0.5rem solid red;
     pointer-events: none;
     display: grid;

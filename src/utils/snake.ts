@@ -28,7 +28,7 @@ function getFreeCells(engine: SnakeEngine) {
 }
 
 function index(x: number, y: number) {
-    return y * gridSize + x;
+    return (y - 1) * gridSize + (x - 1);
 }
 
 function randomizeFood(engine: SnakeEngine) {
@@ -38,9 +38,9 @@ function randomizeFood(engine: SnakeEngine) {
         restart(engine);
         return;
     }
-    const target = item(freeCells.filter(e => e).map((_, i) => i))!;
-    engine.foodX = target % gridSize;
-    engine.foodY = Math.floor(target / gridSize);
+    const target = item(freeCells.map((e, i) => ({ e, i })).filter(e => e.e))!.i;
+    engine.foodX = (target) % gridSize + 1;
+    engine.foodY = Math.floor((target) / gridSize) + 1;
 }
 
 export function defaultHead(): SnakeSegment {
@@ -50,6 +50,8 @@ export function defaultHead(): SnakeSegment {
 export function restart(engine: SnakeEngine) {
     engine.nextMove = 0;
     engine.head = defaultHead();
+    engine.foodX = 1;
+    engine.foodY = 1;
     engine.snake = [
         { x: gridSize / 2 - 2, y: gridSize / 2, type: "tail", orientation: 0 },
         { x: gridSize / 2 - 1, y: gridSize / 2, type: "body", orientation: 0 }
