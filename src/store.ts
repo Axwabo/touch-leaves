@@ -35,7 +35,7 @@ const maxVisible = 4;
 
 const store = defineStore("touch-leaves", {
     state: (): State => ({
-        leaves: 0,
+        leaves: 1000000,
         touchedThisSecond: 0,
         manuallyTouched: 0,
         totalTouched: 0,
@@ -49,7 +49,7 @@ const store = defineStore("touch-leaves", {
         speed: false,
         rainbow: false,
         music: false,
-        level: 0,
+        level: 9,
         pestRemover: false,
         niceWords: false,
         snake: false,

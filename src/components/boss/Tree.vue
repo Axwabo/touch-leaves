@@ -1,18 +1,20 @@
 <script setup lang="ts">
 import useStore from "../../store.ts";
-import { storeToRefs } from "pinia";
-import { computed, onMounted, reactive, ref, useTemplateRef } from "vue";
+import {storeToRefs} from "pinia";
+import {computed, onMounted, reactive, ref, useTemplateRef} from "vue";
 import Branch from "./Branch.vue";
 import useAnimationFrame from "../../composables/useAnimationFrame.ts";
-import { checkCollision } from "../../utils/collision.ts";
+import {checkCollision} from "../../utils/collision.ts";
 import Pinecone from "./Pinecone.vue";
 import useInterval from "../../composables/useInterval.ts";
 
-const { leaf } = defineProps<{ leaf: HTMLSpanElement | null; }>();
+const {leaf} = defineProps<{ leaf: HTMLSpanElement | null; }>();
 
-const { bossHealth, stage } = storeToRefs(useStore());
+const {bossHealth, stage} = storeToRefs(useStore());
 
 type Attack = "pinecone";
+
+const attacking = ref(false);
 
 const attack = ref<Attack | null>(null);
 
@@ -32,7 +34,7 @@ function damage(amount: number) {
         return false;
     bossHealth.value -= amount;
     critical.value = bossHealth.value <= 200;
-    tree.value?.animate([ { filter: "sepia(0.6) hue-rotate(-100deg)" }, { filter: "none" } ], { duration: 500 });
+    tree.value?.animate([{filter: "sepia(0.6) hue-rotate(-100deg)"}, {filter: "none"}], {duration: 500});
     if (bossHealth.value <= 0)
         setTimeout(() => stage.value = "completed", 2000);
     return true;
@@ -54,6 +56,11 @@ useAnimationFrame(() => {
 
 onMounted(performAttack);
 
+useInterval(() => {
+    if (attacking.value && !vulnerable.value && !critical.value)
+        performAttack();
+}, 4000);
+
 function performAttack() {
     setTimeout(() => {
         const random = Math.random();
@@ -63,10 +70,12 @@ function performAttack() {
 
 defineExpose({
     critical,
-    attack: function() {
-        useInterval(performAttack, 4000);
+    beginAttacking() {
+        if (attacking.value)
+            return;
         performAttack();
-    }
+        attacking.value = true;
+    },
 });
 </script>
 
