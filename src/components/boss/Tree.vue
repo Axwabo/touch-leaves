@@ -54,7 +54,7 @@ function hit(branches: boolean[], index: number) {
 
 useAnimationFrame(() => {
     if (!lowHealthInstantUsed && vulnerable.value && low.value) {
-        lowHealthInstantUsed = false;
+        lowHealthInstantUsed = true;
         attack.value = "spikes";
     }
     if (!critical.value || !tree.value || !leaf)
