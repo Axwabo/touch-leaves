@@ -7,6 +7,7 @@ import useAnimationFrame from "../../composables/useAnimationFrame.ts";
 import {checkCollision} from "../../utils/collision.ts";
 import Pinecone from "./Pinecone.vue";
 import Spikes from "./Spikes.vue";
+import useInterval from "../../composables/useInterval.ts";
 
 const {leaf} = defineProps<{ leaf: HTMLSpanElement | null; }>();
 
@@ -55,6 +56,11 @@ useAnimationFrame(() => {
         damage(10);
     collided = collision;
 });
+
+useInterval(() => {
+    if (bossHealth.value <= 300 && !vulnerable.value)
+        performAttack();
+}, 2000);
 
 onUnmounted(() => clearInterval(interval));
 
