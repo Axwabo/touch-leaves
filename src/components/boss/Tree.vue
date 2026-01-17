@@ -51,15 +51,10 @@ useAnimationFrame(() => {
     const collision = checkCollision(tree.value, leaf);
     if (!collided && collision)
         damage(10);
-    collided = !collision;
+    collided = collision;
 });
 
 onMounted(performAttack);
-
-useInterval(() => {
-    if (attacking.value && !vulnerable.value && !critical.value)
-        performAttack();
-}, 4000);
 
 function performAttack() {
     setTimeout(() => {
