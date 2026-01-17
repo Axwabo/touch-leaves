@@ -8,10 +8,18 @@ const { bossHealth } = storeToRefs(useStore());
 </script>
 
 <template>
-    <progress id="bossHealth" :max :value="bossHealth"></progress>
+    <div id="bossHealthContainer">
+        <span>{{ bossHealth }}</span>
+        <br>
+        <progress id="bossHealth" :max :value="bossHealth"></progress>
+    </div>
 </template>
 
 <style>
+#bossHealthContainer {
+    text-align: center;
+}
+
 #bossHealth {
     width: 40vw;
     accent-color: red;

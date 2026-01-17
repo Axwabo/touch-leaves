@@ -23,9 +23,13 @@ const critical = ref(false);
 
 const vulnerable = computed(() => attack.value === null);
 
+const low = computed(() => bossHealth.value <= 300);
+
 const tree = useTemplateRef("tree");
 
 let collided = false;
+
+let lowHealthInstantUsed = false;
 
 const leftBranches = reactive(new Array(5).fill(true));
 const rightBranches = reactive(new Array(5).fill(true));
@@ -49,6 +53,10 @@ function hit(branches: boolean[], index: number) {
 }
 
 useAnimationFrame(() => {
+    if (!lowHealthInstantUsed && vulnerable.value && low.value) {
+        lowHealthInstantUsed = false;
+        attack.value = "spikes";
+    }
     if (!critical.value || !tree.value || !leaf)
         return;
     const collision = checkCollision(tree.value, leaf);
@@ -58,7 +66,7 @@ useAnimationFrame(() => {
 });
 
 useInterval(() => {
-    if (bossHealth.value <= 300 && !vulnerable.value)
+    if (low.value && !vulnerable.value)
         performAttack();
 }, 2000);
 
