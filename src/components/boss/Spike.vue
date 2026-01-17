@@ -18,9 +18,8 @@ const deg = `${rotation}deg`;
 
 .spike {
     animation: shoot 1s 1s linear forwards;
-    width: 10px;
-    height: 10px;
-    background-color: greenyellow;
+    border: 1rem solid transparent;
+    border-top-color: #aed309;
     translate: 0 5rem;
 }
 
