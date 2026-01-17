@@ -29,6 +29,12 @@ let collided = false;
 const leftBranches = reactive(new Array(5).fill(true));
 const rightBranches = reactive(new Array(5).fill(true));
 
+const previousDamagePoint = {
+    x: 0,
+    y: 0,
+    moved: true
+};
+
 function damage(amount: number) {
     if (bossHealth.value <= 0 || tree.value?.getAnimations().some(e => e.playState === "running"))
         return false;
@@ -48,9 +54,17 @@ function hit(branches: boolean[], index: number) {
 useAnimationFrame(() => {
     if (!critical.value || !tree.value || !leaf)
         return;
+    const {x, y} = leaf.getBoundingClientRect();
+    previousDamagePoint.moved ||= Math.abs(x - previousDamagePoint.x) > 10 || Math.abs(y - previousDamagePoint.y) > 10;
+    if(!previousDamagePoint.moved)
+        return;
     const collision = checkCollision(tree.value, leaf);
-    if (!collided && collision)
+    if (!collided && collision) {
         damage(10);
+        previousDamagePoint.x = x;
+        previousDamagePoint.y = y;
+        previousDamagePoint.moved = false;
+    }
     collided = !collision;
 });
 
