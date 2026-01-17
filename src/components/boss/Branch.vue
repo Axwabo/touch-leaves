@@ -32,9 +32,4 @@ useAnimationFrame(() => {
 .branch {
     top: v-bind(top);
 }
-
-.branch path {
-    fill-image: url(../../assets/noise.svg);
-    fill: green;
-}
 </style>
