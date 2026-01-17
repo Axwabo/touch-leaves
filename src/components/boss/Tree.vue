@@ -35,6 +35,7 @@ const leftBranches = reactive(new Array(5).fill(true));
 const rightBranches = reactive(new Array(5).fill(true));
 
 let interval = 0;
+let timeout = 0;
 
 function damage(amount: number) {
     if (bossHealth.value <= 0 || tree.value?.getAnimations().some(e => e.playState === "running"))
@@ -56,6 +57,9 @@ useAnimationFrame(() => {
     if (!lowHealthInstantUsed && vulnerable.value && low.value) {
         lowHealthInstantUsed = true;
         attack.value = "spikes";
+        clearInterval(interval);
+        clearTimeout(timeout);
+        interval = setInterval(attackIfNotCritical, 4000);
     }
     if (!critical.value || !tree.value || !leaf)
         return;
@@ -73,13 +77,18 @@ useInterval(() => {
 onUnmounted(() => clearInterval(interval));
 
 function performAttack() {
-    setTimeout(() => {
-        const random = Math.random();
-        return attack.value = random < 0.4
-            ? null : random < 0.7
+    timeout = setTimeout(() => {
+        attack.value = Math.random() < 0.35
+            ? null
+            : Math.random() < 0.5
                 ? "spikes"
                 : "pinecone";
     }, Math.random() * 1000 + 1000);
+}
+
+function attackIfNotCritical() {
+    if (!critical.value)
+        performAttack();
 }
 
 defineExpose({
@@ -88,10 +97,7 @@ defineExpose({
         if (attacking.value)
             return;
         performAttack();
-        interval = setInterval(() => {
-            if (!critical.value)
-                performAttack();
-        }, 4000);
+        interval = setInterval(attackIfNotCritical, 4000);
         attacking.value = true;
     },
 });
