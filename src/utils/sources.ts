@@ -17,7 +17,7 @@ const nice = [ nice1, nice2, nice3, nice4 ];
 function playPooled(src: string, container: HTMLElement | null) {
     if (!container)
         return;
-    const available = Array.from(container.querySelectorAll("audio")).filter(e => e.ended && e.src === src);
+    const available = Array.from(container.querySelectorAll("audio")).filter(e => e.ended && e.src.includes(src));
     if (container.querySelectorAll("audio").length > 30)
         return;
     const first = available[0];
