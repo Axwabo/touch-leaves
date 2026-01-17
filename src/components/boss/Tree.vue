@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import useStore from "../../store.ts";
 import {storeToRefs} from "pinia";
-import {computed, onMounted, onUnmounted, reactive, ref, useTemplateRef} from "vue";
+import {computed, onUnmounted, reactive, ref, useTemplateRef} from "vue";
 import Branch from "./Branch.vue";
 import useAnimationFrame from "../../composables/useAnimationFrame.ts";
 import {checkCollision} from "../../utils/collision.ts";
 import Pinecone from "./Pinecone.vue";
-import useInterval from "../../composables/useInterval.ts";
+import Spikes from "./Spikes.vue";
 
 const {leaf} = defineProps<{ leaf: HTMLSpanElement | null; }>();
 
 const {bossHealth, stage} = storeToRefs(useStore());
 
-type Attack = "pinecone";
+type Attack = "pinecone" | "spikes";
 
 const attacking = ref(false);
 
@@ -61,7 +61,10 @@ onUnmounted(() => clearInterval(interval));
 function performAttack() {
     setTimeout(() => {
         const random = Math.random();
-        return attack.value = random < 0.4 ? null : "pinecone";
+        return attack.value = random < 0.4
+            ? null : random < 0.7
+                ? "spikes"
+                : "pinecone";
     }, Math.random() * 1000 + 1000);
 }
 
@@ -91,6 +94,7 @@ defineExpose({
         </div>
     </div>
     <Pinecone v-if="attack === 'pinecone'" :leaf />
+    <Spikes v-else-if="attack === 'spikes'" :leaf />
 </template>
 
 <style scoped>
@@ -115,6 +119,10 @@ defineExpose({
 
 #tree.pinecone {
     animation: shake 1s linear;
+}
+
+#tree.spikes {
+    animation: spin 1s linear;
 }
 
 #face {
@@ -155,6 +163,12 @@ defineExpose({
     }
     30%, 55%, 84% {
         translate: -40% 0;
+    }
+}
+
+@keyframes spin {
+    to {
+        rotate: 1turn;
     }
 }
 </style>
