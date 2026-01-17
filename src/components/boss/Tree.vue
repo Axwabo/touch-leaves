@@ -94,7 +94,7 @@ defineExpose({
         </div>
     </div>
     <Pinecone v-if="attack === 'pinecone'" :leaf />
-    <Spikes v-else-if="attack === 'spikes'" :leaf />
+    <Spikes :leaf />
 </template>
 
 <style scoped>

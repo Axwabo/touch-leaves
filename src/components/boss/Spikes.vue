@@ -11,25 +11,18 @@ const {lives, stage} = storeToRefs(useStore());
 
 const spikes = useTemplateRef("spikes");
 
-onMounted(() => {
-    const {x, y, width, height} = leaf!.getBoundingClientRect();
-    const parent = pinecone.value!.parentElement!.getBoundingClientRect();
-    const left = x - parent.x + width * 0.5 + "px";
-    return pinecone.value!.animate([{visibility: "visible", top: "50%", left: "50%"}, {top: "50%", left: "50%"}, {
-        top: y - parent.y + height * 0.5 + "px",
-        left
-    }, {
-        top: parent.bottom + height + "px",
-        left
-    }], {duration: 2500});
-});
+const rotation = Math.random() * 360 + "deg";
 
 useAnimationFrame(() => {
     if (!leaf || !spikes.value)
         return;
-    
-    if (--lives.value === 0)
-        stage.value = "dead";
+    for (const spike of spikes.value!.querySelectorAll(".spike")) {
+        if (!checkCollision(spike, leaf))
+            continue;
+        if (--lives.value === 0)
+            stage.value = "dead";
+        return;
+    }
 });
 </script>
 
@@ -39,6 +32,23 @@ useAnimationFrame(() => {
 
 <style scoped>
 #spikes {
-    
+    rotate: v-bind(rotation);
+    animation: clip 1.5s forwards;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% calc(-50% - 10rem);
+    width: 100px;
+    height: 100px;
+}
+
+@keyframes clip {
+    66% {
+        clip-path: shape(from 50% 0, arc to 0 0 of 50%, arc to 0 0 of 50%);
+    }
+    100%{
+        clip-path: shape(from 50% 0, arc to 50% 100% of 50%, arc to 50% 0 of 50%);
+    }
 }
 </style>
