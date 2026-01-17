@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import useStore from "../store.ts";
-import { storeToRefs } from "pinia";
-import { ref, useTemplateRef, watch } from "vue";
+import {storeToRefs} from "pinia";
+import {ref, useTemplateRef, watch} from "vue";
 import src from "../assets/audio/music.ogg";
 
-const { music } = storeToRefs(useStore());
+const {music} = storeToRefs(useStore());
 
 const muted = ref(false);
 
@@ -14,7 +14,7 @@ const sound = useTemplateRef("audio");
 
 watch(volume, apply);
 
-watch(music, () => apply(volume.value), { flush: "post" });
+watch(music, () => apply(volume.value), {flush: "post"});
 
 function apply(value: number) {
     if (sound.value)
@@ -38,6 +38,7 @@ function apply(value: number) {
     right: 0.5rem;
     display: grid;
     text-align: center;
+    user-select: none;
 }
 
 .music button {
