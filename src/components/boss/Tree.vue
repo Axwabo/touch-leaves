@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useStore from "../../store.ts";
 import {storeToRefs} from "pinia";
-import {computed, onMounted, reactive, ref, useTemplateRef} from "vue";
+import {computed, onMounted, onUnmounted, reactive, ref, useTemplateRef} from "vue";
 import Branch from "./Branch.vue";
 import useAnimationFrame from "../../composables/useAnimationFrame.ts";
 import {checkCollision} from "../../utils/collision.ts";
@@ -29,6 +29,8 @@ let collided = false;
 const leftBranches = reactive(new Array(5).fill(true));
 const rightBranches = reactive(new Array(5).fill(true));
 
+let interval = 0;
+
 function damage(amount: number) {
     if (bossHealth.value <= 0 || tree.value?.getAnimations().some(e => e.playState === "running"))
         return false;
@@ -54,7 +56,7 @@ useAnimationFrame(() => {
     collided = collision;
 });
 
-onMounted(performAttack);
+onUnmounted(() => clearInterval(interval));
 
 function performAttack() {
     setTimeout(() => {
@@ -69,6 +71,10 @@ defineExpose({
         if (attacking.value)
             return;
         performAttack();
+        interval = setInterval(() => {
+            if (!critical.value)
+                performAttack();
+        }, 4000);
         attacking.value = true;
     },
 });

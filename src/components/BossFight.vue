@@ -28,6 +28,7 @@ h1 {
 }
 
 #bossFight {
+    user-select: none;
     position: relative;
     width: 100vw;
 }

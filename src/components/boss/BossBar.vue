@@ -15,5 +15,6 @@ const { bossHealth } = storeToRefs(useStore());
 #bossHealth {
     width: 40vw;
     accent-color: red;
+    pointer-events: none;
 }
 </style>
